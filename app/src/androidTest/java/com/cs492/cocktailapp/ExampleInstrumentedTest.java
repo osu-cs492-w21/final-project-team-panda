@@ -1,4 +1,4 @@
-package com.example.android.lifecycleweather;
+package com.cs492.cocktailapp;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.example.android.lifecycleweather", appContext.getPackageName());
+        assertEquals("com.cs492.cocktailapp", appContext.getPackageName());
     }
 }

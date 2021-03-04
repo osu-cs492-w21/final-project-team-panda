@@ -1,4 +1,4 @@
-package com.example.android.lifecycleweather;
+package com.cs492.cocktailapp;
 
 import org.junit.Test;
 

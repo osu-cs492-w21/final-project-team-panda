@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.android.lifecycleweather">
-
-    <uses-permission android:name="android.permission.INTERNET" />
+    package="com.cs492.cocktailapp">
 
     <application
         android:allowBackup="true"
@@ -10,18 +8,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.BasicWeather">
-        <activity
-            android:name=".utils.SettingsActivity"
-            android:parentActivityName=".MainActivity"/>
-        <activity
-            android:name=".ForecastDetailActivity"
-            android:parentActivityName=".MainActivity" />
+        android:theme="@style/Theme.CocktailApp">
         <activity
             android:name=".MainActivity"
-            android:launchMode="singleTop">
+            android:label="@string/app_name"
+            android:theme="@style/Theme.CocktailApp.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
