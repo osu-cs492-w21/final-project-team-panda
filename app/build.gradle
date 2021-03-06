@@ -43,6 +43,7 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.0'
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
 
     // Database
     implementation 'androidx.room:room-runtime:2.2.6'
