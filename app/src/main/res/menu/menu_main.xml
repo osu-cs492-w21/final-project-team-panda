@@ -1,10 +1,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.cs492.cocktailapp.MainActivity">
+    tools:context="com.cs492.cocktailapp.ui.main.MainActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_search"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+        android:icon="@drawable/ic_search"
+        android:title="@string/action_search"
+        app:showAsAction="always" />
 </menu>
