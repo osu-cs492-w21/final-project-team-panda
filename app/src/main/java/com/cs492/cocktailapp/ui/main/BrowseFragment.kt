@@ -114,7 +114,7 @@ class BrowseFragment : Fragment() {
                             else -> {
                                 errorHeadline.text = getString(R.string.browse_error_no_connection)
                                 errorDetail.visibility = View.VISIBLE
-                                errorDetail.text = getString(R.string.browse_error_no_saved_explanation)
+                                errorDetail.text = getString(R.string.browse_error_no_connection_saved_suggestion)
                                 showSavedButton.visibility = View.VISIBLE
                             }
                         }
