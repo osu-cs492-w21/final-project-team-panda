@@ -3,24 +3,18 @@ package com.cs492.cocktailapp.ui.main
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.cs492.cocktailapp.model.BrowseCategory
 
-class BrowseFragmentAdapter(activity: AppCompatActivity, val itemsCount: Int) : FragmentStateAdapter(activity) {
-
-    // TODO: Find a better way to store this configuration?
-    companion object {
-        val CATEGORIES = arrayOf(
-                BrowseCategory.Popular,
-                BrowseCategory.New,
-                BrowseCategory.Random,
-                BrowseCategory.Saved
-        )
-    }
+class BrowseFragmentAdapter(
+        activity: AppCompatActivity,
+        private val categories: Array<BrowseCategory>
+) : FragmentStateAdapter(activity) {
 
     override fun getItemCount(): Int {
-        return itemsCount
+        return categories.size
     }
 
     override fun createFragment(position: Int): Fragment {
-        return BrowseFragment.newInstance(CATEGORIES[position])
+        return BrowseFragment.newInstance(categories[position])
     }
 }
