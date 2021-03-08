@@ -1,4 +1,4 @@
-package com.cs492.cocktailapp.ui.main.data;
+package com.cs492.cocktailapp.data;
 
 import com.google.gson.annotations.SerializedName;
 

@@ -1,21 +1,15 @@
-package com.cs492.cocktailapp.ui.main.data;
+package com.cs492.cocktailapp.data;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
-public class CocktailRecipe {
+public class CocktailItem {
     @SerializedName("idDrink")
     private String id;
 
     @SerializedName("strDrink")
     private String name;
-
-    @SerializedName("strCategory")
-    private String category;
-
-    @SerializedName("strIBA")
-    private String iba;
 
     @SerializedName("strGlass")
     private String glass;
@@ -118,11 +112,9 @@ public class CocktailRecipe {
     @SerializedName("strMeasure15")
     private String measure15;
     
-    public CocktailRecipe() {
+    public CocktailItem() {
         this.id = null;
         this.name = null;
-        this.category = null;
-        this.iba = null;
         this.glass = null;
         this.instructions = null;
         this.imageUrl = null;
@@ -166,14 +158,6 @@ public class CocktailRecipe {
 
     public String getDrinkName() {
         return this.name;
-    }
-
-    public String getDrinkCategory() {
-        return this.category;
-    }
-
-    public String getDrinkIba() {
-        return this.iba;
     }
 
     public String getDrinkGlass() {
