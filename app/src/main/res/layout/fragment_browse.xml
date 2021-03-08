@@ -1,16 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraintLayout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/browseSwipeRefreshLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.main.BrowseFragment">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/section_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/activity_horizontal_margin" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-</LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/browseRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/browseErrorView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/text_horizontal_margin"
+                android:layout_marginRight="@dimen/text_horizontal_margin"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/browseErrorHeadline"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:maxLines="3"
+                    android:textAlignment="center"
+                    android:textAppearance="?attr/textAppearanceHeadline6"
+                    android:text="Error" />
+
+                <TextView
+                    android:id="@+id/browseErrorExplanation"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:maxLines="3"
+                    android:textAlignment="center"
+                    android:layout_marginTop="@dimen/fab_margin"
+                    android:textAppearance="?attr/textAppearanceCaption"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/showSavedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/fab_margin"
+                    android:text="GO TO SAVED"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

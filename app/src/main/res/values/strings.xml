@@ -10,4 +10,11 @@
     <string name="browse_saved">Saved</string>
 
     <string name="main_activity_title">Browse Cocktails</string>
+
+    <!-- Browse error messages -->
+    <string name="browse_error_no_saved">No saved cocktail recipes</string>
+    <string name="browse_error_no_saved_explanation">Use the bookmark button to download your favorite cocktail recipes for offline access.</string>
+    <string name="browse_error_no_connection">You\'re offline</string>
+    <string name="browse_error_no_connection_saved_suggestion">You can still view saved recipes without an internet connection.</string>
+
 </resources>
