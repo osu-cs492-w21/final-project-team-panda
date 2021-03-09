@@ -3,7 +3,7 @@ package com.cs492.cocktailapp.ui.main
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.cs492.cocktailapp.model.BrowseCategory
+import com.cs492.cocktailapp.data.BrowseCategory
 
 class BrowseFragmentAdapter(
         activity: AppCompatActivity,

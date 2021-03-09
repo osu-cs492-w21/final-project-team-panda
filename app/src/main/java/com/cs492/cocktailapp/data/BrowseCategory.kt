@@ -1,4 +1,4 @@
-package com.cs492.cocktailapp.model
+package com.cs492.cocktailapp.data
 
 import com.cs492.cocktailapp.R
 

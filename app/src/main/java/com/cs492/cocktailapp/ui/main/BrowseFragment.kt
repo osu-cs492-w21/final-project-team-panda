@@ -14,18 +14,21 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.cs492.cocktailapp.R
-import com.cs492.cocktailapp.model.BrowseCategory
-import com.cs492.cocktailapp.model.LoadingStatus
+import com.cs492.cocktailapp.data.BrowseCategory
+import com.cs492.cocktailapp.data.LoadingStatus
 
 /*
- * The caller *MUST* put a com.cs492.cocktailapp.model.BrowseCategory with key CATEGORY_ARGUMENT in
+ * The caller *MUST* put a com.cs492.cocktailapp.data.BrowseCategory with key CATEGORY_ARGUMENT in
  * arguments immediately after instantiation or else a crash will occur.
  */
 class BrowseFragment : Fragment() {
 
     private lateinit var pageViewModel: BrowseViewModel
-    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
+
     private lateinit var recyclerView: RecyclerView
+    private val adapter = BrowseCategoryListAdapter()
+
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     private lateinit var errorView: View
     private lateinit var showSavedButton: Button
     private lateinit var errorHeadline: TextView
@@ -41,7 +44,7 @@ class BrowseFragment : Fragment() {
         if (context is BrowseFragmentListener) {
             listener = context
         } else {
-            throw RuntimeException("$context must implement `BrowseFragmentListener")
+            throw RuntimeException("$context does not implement `BrowseFragmentListener")
         }
     }
 
@@ -81,7 +84,10 @@ class BrowseFragment : Fragment() {
         // Set up recycler view
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.setHasFixedSize(true)
-        recyclerView.adapter = null // TODO(Julian)
+        recyclerView.adapter = adapter
+
+        // Click listener
+        adapter.onClickHandler = listener!!::navigateTo
 
         // Set up swipe refresh
         swipeRefreshLayout.setOnRefreshListener {
@@ -90,8 +96,7 @@ class BrowseFragment : Fragment() {
 
         // Connect view model to the recycler view
         pageViewModel.browseItems.observe(viewLifecycleOwner, {
-            // TODO(Julian): Recycle adapter send new data
-
+            adapter.cocktailRecipeList = it
         })
 
         // Observe view model status
