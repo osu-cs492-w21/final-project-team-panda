@@ -54,7 +54,7 @@ public class CocktailSearchRepository {
         return recipes;
     }
 
-    public void loadSearchResultsforName(String query) {
+    public LiveData<List<CocktailRecipe>> loadSearchResultsforName(String query) {
         this.currentQuery = query;
         this.searchResults.setValue(null);
         Log.d(TAG, "running new search for query: " + query);
@@ -74,6 +74,8 @@ public class CocktailSearchRepository {
                 t.printStackTrace();
             }
         });
+
+        return searchResults;
     }
 
 }
