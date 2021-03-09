@@ -38,10 +38,9 @@ class BrowseCategoryListAdapter : RecyclerView.Adapter<BrowseCategoryListAdapter
         fun bind(cocktailRecipe: CocktailRecipe) {
             name.text = cocktailRecipe.drinkName
 
-            // TODO(Kristina) Uncomment once the CocktailRecipe has an image URL
-            //Glide.with(itemView.context)
-            //        .load(cocktailRecipe.imageUrl)
-            //        .into(image)
+            Glide.with(itemView.context)
+                    .load(cocktailRecipe.drinkImage)
+                    .into(image)
         }
 
         init {
