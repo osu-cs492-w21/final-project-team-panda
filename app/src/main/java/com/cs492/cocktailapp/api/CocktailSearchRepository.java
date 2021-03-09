@@ -21,17 +21,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class CocktailSearchRepository {
     private static final String TAG = CocktailSearchRepository.class.getSimpleName();
     private static final String BASE_URL = "https://www.thecocktaildb.com/api/json/v1/1/";
-
-    private MutableLiveData<List<CocktailRecipe>> searchResults;
-
     private String currentQuery;
-
     private CocktailService cocktailService;
 
     public CocktailSearchRepository() {
-        this.searchResults = new MutableLiveData<>();
-        this.searchResults.setValue(null);
-
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -39,9 +32,6 @@ public class CocktailSearchRepository {
         this.cocktailService = retrofit.create(CocktailService.class);
     }
 
-    public LiveData<List<CocktailRecipe>> getSearchResults() {
-        return this.searchResults;
-    }
 
     private List<CocktailRecipe> convertCocktailItemstoRecipes(List<CocktailItem> items){
         List<CocktailRecipe> recipes = new ArrayList<>();
@@ -56,7 +46,8 @@ public class CocktailSearchRepository {
 
     public LiveData<List<CocktailRecipe>> loadSearchResultsforName(String query) {
         this.currentQuery = query;
-        this.searchResults.setValue(null);
+        MutableLiveData<List<CocktailRecipe>> searchResults = new MutableLiveData<>();
+        searchResults.setValue(null);
         Log.d(TAG, "running new search for query: " + query);
 
         Call<CocktailList> results = this.cocktailService.searchCocktailByName(query);
