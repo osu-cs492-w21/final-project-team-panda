@@ -5,8 +5,8 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.cs492.cocktailapp.data.CocktailSearchItem;
-import com.cs492.cocktailapp.data.CocktailSearchList;
+import com.cs492.cocktailapp.data.CocktailItem;
+import com.cs492.cocktailapp.data.CocktailList;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ public class CocktailSearchRepository {
     private static final String TAG = CocktailSearchRepository.class.getSimpleName();
     private static final String BASE_URL = "https://www.thecocktaildb.com/api/json/v1/1/";
 
-    private MutableLiveData<List<CocktailSearchItem>> searchResults;
+    private MutableLiveData<List<CocktailItem>> searchResults;
 
     private String currentQuery;
 
@@ -37,7 +37,7 @@ public class CocktailSearchRepository {
         this.cocktailService = retrofit.create(CocktailService.class);
     }
 
-    public LiveData<List<CocktailSearchItem>> getSearchResults() {
+    public LiveData<List<CocktailItem>> getSearchResults() {
         return this.searchResults;
     }
 
@@ -46,17 +46,17 @@ public class CocktailSearchRepository {
         this.searchResults.setValue(null);
         Log.d(TAG, "running new search for query: " + query);
 
-        Call<CocktailSearchList> results = this.cocktailService.searchCocktailByName(query);
-        results.enqueue(new Callback<CocktailSearchList>() {
+        Call<CocktailList> results = this.cocktailService.searchCocktailByName(query);
+        results.enqueue(new Callback<CocktailList>() {
             @Override
-            public void onResponse(Call<CocktailSearchList> call, Response<CocktailSearchList> response) {
+            public void onResponse(Call<CocktailList> call, Response<CocktailList> response) {
                 if (response.code() == 200) {
-                    searchResults.setValue(response.body().getCocktailSearchItems());
+                    searchResults.setValue(response.body().getCocktailRecipes());
                 }
             }
 
             @Override
-            public void onFailure(Call<CocktailSearchList> call, Throwable t) {
+            public void onFailure(Call<CocktailList> call, Throwable t) {
                 t.printStackTrace();
             }
         });
