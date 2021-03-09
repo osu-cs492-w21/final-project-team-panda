@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class CocktailRecipe {
     private String name;
     private int id;
+    private String imageUrl;
     private String instructions;
     private String glass;
     private ArrayList<MeasureIngredient> ingredientList;
@@ -17,9 +18,10 @@ public class CocktailRecipe {
         this.ingredientList = null;
     }
 
-    public CocktailRecipe(String name, int id, String instructions, String glass, ArrayList<MeasureIngredient> ingredientList) {
+    public CocktailRecipe(String name, int id, String imageUrl,String instructions, String glass, ArrayList<MeasureIngredient> ingredientList) {
         this.name = name;
         this.id = id;
+        this.imageUrl = imageUrl;
         this.instructions = instructions;
         this.glass = glass;
         this.ingredientList = ingredientList;
@@ -31,6 +33,10 @@ public class CocktailRecipe {
 
     public int getDrinkId() {
         return this.id;
+    }
+
+    public String getDrinkImage() {
+        return this.imageUrl;
     }
 
     public String getDrinkInstructions() {
