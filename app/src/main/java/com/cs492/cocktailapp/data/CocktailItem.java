@@ -218,4 +218,43 @@ public class CocktailItem {
         return measurements;
     }
 
+    public ArrayList<MeasureIngredient> getMeasureIngredients(){
+        ArrayList<MeasureIngredient> measuredIngredients = new ArrayList<>();
+
+        MeasureIngredient measureIngredient1 = new MeasureIngredient(this.ingredient1, this.measure1);
+        MeasureIngredient measureIngredient2 = new MeasureIngredient(this.ingredient2, this.measure2);
+        MeasureIngredient measureIngredient3 = new MeasureIngredient(this.ingredient3, this.measure3);
+        MeasureIngredient measureIngredient4 = new MeasureIngredient(this.ingredient4, this.measure4);
+        MeasureIngredient measureIngredient5 = new MeasureIngredient(this.ingredient5, this.measure5);
+        MeasureIngredient measureIngredient6 = new MeasureIngredient(this.ingredient6, this.measure6);
+        MeasureIngredient measureIngredient7 = new MeasureIngredient(this.ingredient7, this.measure7);
+        MeasureIngredient measureIngredient8 = new MeasureIngredient(this.ingredient8, this.measure8);
+        MeasureIngredient measureIngredient9 = new MeasureIngredient(this.ingredient9, this.measure9);
+        MeasureIngredient measureIngredient10 = new MeasureIngredient(this.ingredient10, this.measure10);
+        MeasureIngredient measureIngredient11 = new MeasureIngredient(this.ingredient11, this.measure11);
+        MeasureIngredient measureIngredient12 = new MeasureIngredient(this.ingredient12, this.measure12);
+        MeasureIngredient measureIngredient13 = new MeasureIngredient(this.ingredient13, this.measure13);
+        MeasureIngredient measureIngredient14 = new MeasureIngredient(this.ingredient14, this.measure14);
+        MeasureIngredient measureIngredient15 = new MeasureIngredient(this.ingredient15, this.measure15);
+
+        measuredIngredients.add(measureIngredient1);
+        measuredIngredients.add(measureIngredient2);
+        measuredIngredients.add(measureIngredient3);
+        measuredIngredients.add(measureIngredient4);
+        measuredIngredients.add(measureIngredient5);
+        measuredIngredients.add(measureIngredient6);
+        measuredIngredients.add(measureIngredient7);
+        measuredIngredients.add(measureIngredient8);
+        measuredIngredients.add(measureIngredient9);
+        measuredIngredients.add(measureIngredient10);
+        measuredIngredients.add(measureIngredient11);
+        measuredIngredients.add(measureIngredient12);
+        measuredIngredients.add(measureIngredient13);
+        measuredIngredients.add(measureIngredient14);
+        measuredIngredients.add(measureIngredient15);
+
+        return measuredIngredients;
+
+    }
+
 }

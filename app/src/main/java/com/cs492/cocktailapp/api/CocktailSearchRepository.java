@@ -7,7 +7,9 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.cs492.cocktailapp.data.CocktailItem;
 import com.cs492.cocktailapp.data.CocktailList;
+import com.cs492.cocktailapp.data.CocktailRecipe;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -20,7 +22,7 @@ public class CocktailSearchRepository {
     private static final String TAG = CocktailSearchRepository.class.getSimpleName();
     private static final String BASE_URL = "https://www.thecocktaildb.com/api/json/v1/1/";
 
-    private MutableLiveData<List<CocktailItem>> searchResults;
+    private MutableLiveData<List<CocktailRecipe>> searchResults;
 
     private String currentQuery;
 
@@ -37,8 +39,19 @@ public class CocktailSearchRepository {
         this.cocktailService = retrofit.create(CocktailService.class);
     }
 
-    public LiveData<List<CocktailItem>> getSearchResults() {
+    public LiveData<List<CocktailRecipe>> getSearchResults() {
         return this.searchResults;
+    }
+
+    private List<CocktailRecipe> convertCocktailItemstoRecipes(List<CocktailItem> items){
+        List<CocktailRecipe> recipes = new ArrayList<>();
+
+        for (CocktailItem item : items) {
+            CocktailRecipe obj = new CocktailRecipe(item.getDrinkName(),Integer.parseInt(item.getDrinkId()),item.getDrinkInstructions(), item.getDrinkGlass(), item.getMeasureIngredients());
+            recipes.add(obj);
+        }
+
+        return recipes;
     }
 
     public void loadSearchResultsforName(String query) {
@@ -51,7 +64,8 @@ public class CocktailSearchRepository {
             @Override
             public void onResponse(Call<CocktailList> call, Response<CocktailList> response) {
                 if (response.code() == 200) {
-                    searchResults.setValue(response.body().getCocktailRecipes());
+                    List<CocktailItem> res = response.body().getCocktailRecipes();
+                    searchResults.setValue(convertCocktailItemstoRecipes(res));
                 }
             }
 
