@@ -75,9 +75,9 @@ class MainActivity : AppCompatActivity(), BrowseFragmentListener {
         // TODO(Kristina/Julian): Launch Recipe Intent
         // Just uncomment and swap out <recipe activity name> with your activity :)
 
-        //val intent = Intent(this, <recipe activity name>::class.java)
-        //intent.putExtra(<recipe activity name>.EXTRA_RECIPE, cocktailRecipe)
-        //startActivity(intent)
+        val intent = Intent(this, DetailedCocktailActivity::class.java)
+        intent.putExtra(DetailedCocktailActivity.EXTRA_RECIPE, cocktailRecipe)
+        startActivity(intent)
     }
 
     private fun launchSearchIntent() {

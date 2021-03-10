@@ -1,8 +1,9 @@
 package com.cs492.cocktailapp.data;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class CocktailRecipe {
+public class CocktailRecipe implements Serializable {
     private String name;
     private int id;
     private String imageUrl;

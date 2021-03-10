@@ -37,7 +37,7 @@ public class CocktailSearchRepository {
         List<CocktailRecipe> recipes = new ArrayList<>();
 
         for (CocktailItem item : items) {
-            CocktailRecipe obj = new CocktailRecipe(item.getDrinkName(),Integer.parseInt(item.getDrinkId()),item.getDrinkInstructions(), item.getDrinkGlass(), item.getMeasureIngredients());
+            CocktailRecipe obj = new CocktailRecipe(item.getDrinkName(),Integer.parseInt(item.getDrinkId()), item.getDrinkImage(), item.getDrinkInstructions(), item.getDrinkGlass(), item.getMeasureIngredients());
             recipes.add(obj);
         }
 

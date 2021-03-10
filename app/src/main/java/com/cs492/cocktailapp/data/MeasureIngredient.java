@@ -1,6 +1,8 @@
 package com.cs492.cocktailapp.data;
 
-public class MeasureIngredient {
+import java.io.Serializable;
+
+public class MeasureIngredient implements Serializable {
     private String ingredient;
     private String measurement;
 
