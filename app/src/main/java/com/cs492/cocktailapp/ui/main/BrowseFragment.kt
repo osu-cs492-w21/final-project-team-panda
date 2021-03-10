@@ -23,6 +23,7 @@ import com.cs492.cocktailapp.data.LoadingStatus
  */
 class BrowseFragment : Fragment() {
 
+    private lateinit var category: BrowseCategory
     private lateinit var pageViewModel: BrowseViewModel
 
     private lateinit var recyclerView: RecyclerView
@@ -59,6 +60,7 @@ class BrowseFragment : Fragment() {
 
         // ⚠️ This will crash if the argument is not passed
         val category = requireArguments().getSerializable(CATEGORY_ARGUMENT) as BrowseCategory
+        this.category = category
 
         // There is a different ViewModel for each Fragment based on the category.
         pageViewModel = ViewModelProvider(this).get(category.toString(), BrowseViewModel::class.java).apply {
@@ -96,7 +98,16 @@ class BrowseFragment : Fragment() {
 
         // Connect view model to the recycler view
         pageViewModel.browseItems.observe(viewLifecycleOwner, {
-            adapter.cocktailRecipeList = it
+            if (category == BrowseCategory.Saved && it.isEmpty()) {
+                // Hide the recycler view and show the error text underneath
+                recyclerView.visibility = View.GONE
+                errorView.visibility = View.VISIBLE
+
+                // Tell user they have none saved and how to save
+                showNoSaved()
+            } else {
+                adapter.cocktailRecipeList = it
+            }
         })
 
         // Observe view model status
@@ -135,6 +146,15 @@ class BrowseFragment : Fragment() {
         return root
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        // Automatically reload Saved cocktails whenever the user navigates to it
+        if (category == BrowseCategory.Saved) {
+            pageViewModel.loadBrowseItems()
+        }
+    }
+
     private fun showError() {
         when (category) {
             // The saved view gets a different error
@@ -149,6 +169,14 @@ class BrowseFragment : Fragment() {
             }
         }
     }
+
+    private fun showNoSaved() {
+        errorHeadline.text = getString(R.string.browse_error_no_saved)
+        errorDetail.visibility = View.VISIBLE
+        errorDetail.text = getString(R.string.browse_error_no_saved_explanation)
+        showSavedButton.visibility = View.GONE
+    }
+
     companion object {
         private val TAG = this::class.simpleName
 
