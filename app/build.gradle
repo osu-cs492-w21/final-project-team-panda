@@ -7,7 +7,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 def apiKeyProperties = new Properties()
-apiKeyProperties.setProperty("COCKTAIL_DB_API_KEY", "1") // Fall back to 1
+apiKeyProperties.setProperty("COCKTAIL_DB_API_KEY", "\"1\"") // Fall back to 1
 
 // Download from Google Drive
 def file = rootProject.file("api.properties")
@@ -62,7 +62,7 @@ dependencies {
 
     // Database
     implementation 'androidx.room:room-runtime:2.2.6'
-    annotationProcessor 'androidx.room:room-compiler:2.2.6'
+    kapt 'androidx.room:room-compiler:2.2.6'
 
     // Network
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
