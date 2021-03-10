@@ -118,3 +118,25 @@ public class CocktailRepository {
     public CompletableFuture<ArrayList<CocktailRecipe>> getSearchResults(String query) {
         return getListFromQuery(this.cocktailService::searchCocktailByName, query);
     }
+
+    public CompletableFuture<ArrayList<CocktailRecipe>> getBrowse(BrowseCategory category) {
+        if (category == BrowseCategory.Saved) {
+            return getSaved();
+        } else {
+            String categoryParameter = categoryPathParameter(category);
+            return getListFromQuery(this.cocktailService::getBrowse, categoryParameter);
+        }
+    }
+
+    public CompletableFuture<ArrayList<CocktailRecipe>> getSaved() {
+        CompletableFuture<ArrayList<CocktailRecipe>> result = new CompletableFuture<>();
+
+        // TODO(Natalie) Remove this and hit Database
+        result.complete(new ArrayList<>());
+
+        // Note:
+
+        return result;
+    }
+
+}
