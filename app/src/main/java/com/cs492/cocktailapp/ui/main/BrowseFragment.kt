@@ -109,20 +109,7 @@ class BrowseFragment : Fragment() {
                         recyclerView.visibility = View.GONE
                         errorView.visibility = View.VISIBLE
 
-                        when (pageViewModel.category) {
-                            BrowseCategory.Saved -> {
-                                errorHeadline.text = getString(R.string.browse_error_no_saved)
-                                errorDetail.visibility = View.VISIBLE
-                                errorDetail.text = getString(R.string.browse_error_no_saved_explanation)
-                                showSavedButton.visibility = View.GONE
-                            }
-                            else -> {
-                                errorHeadline.text = getString(R.string.browse_error_no_connection)
-                                errorDetail.visibility = View.VISIBLE
-                                errorDetail.text = getString(R.string.browse_error_no_connection_saved_suggestion)
-                                showSavedButton.visibility = View.VISIBLE
-                            }
-                        }
+                        showError()
                     }
                     LoadingStatus.Loading -> {
                         if (!swipeRefreshLayout.isRefreshing) {
@@ -148,6 +135,20 @@ class BrowseFragment : Fragment() {
         return root
     }
 
+    private fun showError() {
+        when (category) {
+            // The saved view gets a different error
+            BrowseCategory.Saved -> {
+               // TODO ?
+            }
+            else -> {
+                errorHeadline.text = getString(R.string.browse_error_no_connection)
+                errorDetail.visibility = View.VISIBLE
+                errorDetail.text = getString(R.string.browse_error_no_connection_saved_suggestion)
+                showSavedButton.visibility = View.VISIBLE
+            }
+        }
+    }
     companion object {
         private val TAG = this::class.simpleName
 
