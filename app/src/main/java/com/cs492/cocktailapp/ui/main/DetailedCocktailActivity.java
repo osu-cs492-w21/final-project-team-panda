@@ -36,7 +36,8 @@ public class DetailedCocktailActivity extends AppCompatActivity {
         Intent intent =  getIntent();
         if(intent != null && intent.hasExtra(EXTRA_RECIPE)) {
             this.cocktail = (CocktailRecipe)intent.getSerializableExtra(EXTRA_RECIPE);
-            //Log.d(TAG, "Got cocktail with name: " + cocktail.getDrinkName());
+
+            setTitle(cocktail.getDrinkName() + " Recipe");
 
             TextView cocktailName = findViewById(R.id.detailed_cocktail_name);
             TextView cocktailGlass = findViewById(R.id.detailed_cocktail_glass);

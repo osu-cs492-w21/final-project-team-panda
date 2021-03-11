@@ -26,7 +26,12 @@ class BrowseViewModel : ViewModel() {
                         arrayListOf(
                                 MeasureIngredient("Bourbon", "One bottle"),
                                 MeasureIngredient("Vodka", "2 Shots"),
-                                MeasureIngredient("Lime", "Half a lime")
+                                MeasureIngredient("Lime", "Half a lime"),
+                                MeasureIngredient("Testing123"),
+                                MeasureIngredient(),
+                                MeasureIngredient(),
+                                MeasureIngredient(),
+                                MeasureIngredient()
                         ),
                 ),
                 CocktailRecipe(
