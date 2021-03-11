@@ -1,5 +1,7 @@
 package com.cs492.cocktailapp.data;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 

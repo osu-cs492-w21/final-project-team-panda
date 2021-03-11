@@ -7,6 +7,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.cs492.cocktailapp.R;
@@ -17,6 +19,14 @@ public class DetailedCocktailActivity extends AppCompatActivity {
     private CocktailRecipe cocktail;
     private final static String TAG = DetailedCocktailActivity.class.getSimpleName();
     public static final String EXTRA_RECIPE = "CocktailRecipe";
+
+    // Ingredients list
+    private RecyclerView ingredientListRV;
+    private IngredientAdapter ingredientAdapter;
+
+    // TO DO: Add database stuff for favorited drinks
+    // private < (insert view model name) > viewModel
+    private boolean isFavorited;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +49,19 @@ public class DetailedCocktailActivity extends AppCompatActivity {
             Glide.with(this)
                     .load(this.cocktail.getDrinkImage())
                     .into(cocktailImage);
-        }
 
+            // RecyclerView set up
+            this.ingredientListRV = findViewById(R.id.rv_ingredient_list);
+            this.ingredientListRV.setLayoutManager(new LinearLayoutManager(this));
+            this.ingredientListRV.setHasFixedSize(true);
+
+            this.ingredientAdapter = new IngredientAdapter();
+            ingredientListRV.setAdapter(ingredientAdapter);
+
+            ingredientAdapter.updateIngredientListData(this.cocktail.getIngredientList());
+
+        }
     }
+
+    // TO DO: Add click listener for favorite button
 }

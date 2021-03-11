@@ -23,7 +23,11 @@ class BrowseViewModel : ViewModel() {
                         "https://www.thecocktaildb.com/images/media/drink/vrwquq1478252802.jpg",
                         "Put it in a glass, baby!",
                         "Serve in chill glass",
-                        arrayListOf(MeasureIngredient("Bourbon", "One bottle")),
+                        arrayListOf(
+                                MeasureIngredient("Bourbon", "One bottle"),
+                                MeasureIngredient("Vodka", "2 Shots"),
+                                MeasureIngredient("Lime", "Half a lime")
+                        ),
                 ),
                 CocktailRecipe(
                         "Moscow Mule",
@@ -31,7 +35,11 @@ class BrowseViewModel : ViewModel() {
                         "https://www.thecocktaildb.com/images/media/drink/metwgh1606770327.jpg",
                         "Put it in a glass, baby!",
                         "Serve in copper mug",
-                        arrayListOf(MeasureIngredient("Vodka", "Two shots")),
+                        arrayListOf(
+                                MeasureIngredient("Bourbon", "One bottle"),
+                                MeasureIngredient("Lemon", "The whole thing"),
+                                MeasureIngredient("Ice", "Two scoops")
+                        ),
                 ),
                 CocktailRecipe(
                         "Manhattan",
@@ -39,7 +47,10 @@ class BrowseViewModel : ViewModel() {
                         "https://www.thecocktaildb.com/images/media/drink/yk70e31606771240.jpg",
                         "Shook not stirren!",
                         "Serve in fancy triangle glass",
-                        arrayListOf(MeasureIngredient("IDK", "A lot")),
+                        arrayListOf(
+                                MeasureIngredient("Sunshine", "One bottle"),
+                                MeasureIngredient("A Manhattan person", "The whole thing")
+                        ),
                 ),
                 CocktailRecipe(
                         "Margarita",
