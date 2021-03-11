@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--  Customize tab layout  -->
+    <declare-styleable name = "tabLayout">
+        <attr name="tabLayoutStyle" format="reference" />
+    </declare-styleable>
+</resources>

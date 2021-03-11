@@ -7,4 +7,13 @@
     <style name="PlainActionBarDark" parent="Widget.AppCompat.Toolbar">
         <item name="android:background">?android:attr/colorBackground</item>
     </style>
+
+    <style name="PlainTabLayout" parent="Widget.MaterialComponents.TabLayout.PrimarySurface">
+        <item name="android:background">?android:attr/colorBackground</item>
+    </style>
+
+    <style name="SecondaryColoredTabLayout" parent="Widget.MaterialComponents.TabLayout.PrimarySurface">
+        <item name="android:background">?attr/colorPrimaryVariant</item>
+    </style>
+
 </resources>
