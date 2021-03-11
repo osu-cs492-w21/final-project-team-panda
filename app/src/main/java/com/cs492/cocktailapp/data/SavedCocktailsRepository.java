@@ -44,18 +44,6 @@ public class SavedCocktailsRepository {
         }
     }
 
-//    public void insertCocktail(CocktailEntity cocktail, List<CocktailIngredientsEntity> ingredients) {
-//        AppDatabase.databaseWriteExecutor.execute(
-//                new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        savedCocktailsDao.insertCocktail(cocktail);
-//                        savedCocktailsDao.insertIngredients(ingredients);
-//                    }
-//                }
-//        );
-//    }
-//
     public void deleteCocktail(CocktailEntity cocktail) {
         AppDatabase.databaseWriteExecutor.execute(
                 new Runnable() {

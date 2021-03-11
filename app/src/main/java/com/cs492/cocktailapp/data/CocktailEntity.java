@@ -22,7 +22,6 @@ public class CocktailEntity implements Serializable {
     public String glass;
     public String instructions;
     public String imageUrl;
-//    public boolean savedStatus;
 
     public CocktailEntity(int id, String name, String glass, String instructions, String imageUrl) {
         this.id = id;
@@ -38,7 +37,6 @@ public class CocktailEntity implements Serializable {
     public void setGlass(String glass) { this.glass = glass; }
     public void setInstructions(String instructions) { this.instructions = instructions; }
     public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
-//    public void setSavedStatus(boolean status) { this.savedStatus = status; }
 
     // getters - required to have one for each member variable
     public int getId() {
@@ -56,5 +54,4 @@ public class CocktailEntity implements Serializable {
     public String getImageUrl() {
         return this.imageUrl;
     }
-//    public boolean getSavedStatus() { return this.savedStatus; }
 }
