@@ -16,6 +16,13 @@ public class CocktailIngredientsEntity {
     public String ingredient;
     public String measurement;
 
+    public CocktailIngredientsEntity(int drinkId, int ingredientNumber, String ingredient, String measurement) {
+        this.drinkId = drinkId;
+        this.ingredientNumber = ingredientNumber;
+        this.ingredient = ingredient;
+        this.measurement = measurement;
+    }
+
     // getters - required to have one for each member variable
     public int getId() { return this.id; }
     public int getDrinkId() { return this.drinkId; }
