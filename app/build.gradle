@@ -48,7 +48,6 @@ dependencies {
 
     // Database
     implementation 'androidx.room:room-runtime:2.2.6'
-    implementation 'androidx.wear:wear:1.0.0'
     annotationProcessor 'androidx.room:room-compiler:2.2.6'
 
     // Network
@@ -57,7 +56,6 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     implementation 'com.squareup.picasso:picasso:2.8'
-    compileOnly 'com.google.android.wearable:wearable:2.6.0'
 }
 
 repositories {
