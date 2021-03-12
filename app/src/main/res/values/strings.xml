@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">CocktailApp</string>
+    <string name="title_activity_detailed_cocktail">DetailedCocktailActivity</string>
 
     <string name="action_search">Search</string>
 
@@ -16,11 +17,5 @@
     <string name="browse_error_no_saved_explanation">Use the bookmark button to download your favorite cocktail recipes for offline access.</string>
     <string name="browse_error_no_connection">You\'re offline</string>
     <string name="browse_error_no_connection_saved_suggestion">You can still view saved recipes without an internet connection.</string>
-    <string name="title_activity_detailed_cocktail">DetailedCocktailActivity</string>
-    <!--
-    This string is used for square devices and overridden by hello_world in
-    values-round/strings.xml for round devices.
-    -->
-    <string name="hello_world">Hello Square World!</string>
 
 </resources>

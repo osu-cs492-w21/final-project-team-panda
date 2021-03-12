@@ -59,10 +59,10 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
         }
 
         void bind(MeasureIngredient item) {
-            if(item.getIngredient() != null) {
+            if(item.getIngredient() != null && item.getIngredient() != "") {
                 measurementName.setText(item.getIngredient());
             }
-            if(item.getMeasurement() != null) {
+            if(item.getMeasurement() != null && item.getMeasurement() != "") {
                 measurementAmount.setText(": " + item.getMeasurement());
             }
         }
