@@ -1,8 +1,11 @@
 package com.cs492.cocktailapp.data;
 
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class CocktailRecipe {
+public class CocktailRecipe implements Serializable{
     private final String name;
     private final int id;
     private final String imageUrl;

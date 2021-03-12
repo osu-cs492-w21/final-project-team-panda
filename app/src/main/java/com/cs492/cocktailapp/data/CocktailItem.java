@@ -172,52 +172,6 @@ public class CocktailItem {
         return this.imageUrl;
     }
 
-    // returns all drink ingredients
-    public ArrayList<String> getIngredients() {
-        ArrayList<String> ingredients = new ArrayList<>();
-
-        ingredients.add(this.ingredient1);
-        ingredients.add(this.ingredient2);
-        ingredients.add(this.ingredient3);
-        ingredients.add(this.ingredient4);
-        ingredients.add(this.ingredient5);
-        ingredients.add(this.ingredient6);
-        ingredients.add(this.ingredient7);
-        ingredients.add(this.ingredient8);
-        ingredients.add(this.ingredient9);
-        ingredients.add(this.ingredient10);
-        ingredients.add(this.ingredient11);
-        ingredients.add(this.ingredient12);
-        ingredients.add(this.ingredient13);
-        ingredients.add(this.ingredient14);
-        ingredients.add(this.ingredient15);
-
-        return ingredients;
-    }
-
-    // returns all drink measurements
-    public ArrayList<String> getMeasurements() {
-        ArrayList<String> measurements = new ArrayList<>();
-
-        measurements.add(this.measure1);
-        measurements.add(this.measure2);
-        measurements.add(this.measure3);
-        measurements.add(this.measure4);
-        measurements.add(this.measure5);
-        measurements.add(this.measure6);
-        measurements.add(this.measure7);
-        measurements.add(this.measure8);
-        measurements.add(this.measure9);
-        measurements.add(this.measure10);
-        measurements.add(this.measure11);
-        measurements.add(this.measure12);
-        measurements.add(this.measure13);
-        measurements.add(this.measure14);
-        measurements.add(this.measure15);
-
-        return measurements;
-    }
-
     public ArrayList<MeasureIngredient> getMeasureIngredients(){
         ArrayList<MeasureIngredient> measuredIngredients = new ArrayList<>();
 
@@ -237,21 +191,51 @@ public class CocktailItem {
         MeasureIngredient measureIngredient14 = new MeasureIngredient(this.ingredient14, this.measure14);
         MeasureIngredient measureIngredient15 = new MeasureIngredient(this.ingredient15, this.measure15);
 
-        measuredIngredients.add(measureIngredient1);
-        measuredIngredients.add(measureIngredient2);
-        measuredIngredients.add(measureIngredient3);
-        measuredIngredients.add(measureIngredient4);
-        measuredIngredients.add(measureIngredient5);
-        measuredIngredients.add(measureIngredient6);
-        measuredIngredients.add(measureIngredient7);
-        measuredIngredients.add(measureIngredient8);
-        measuredIngredients.add(measureIngredient9);
-        measuredIngredients.add(measureIngredient10);
-        measuredIngredients.add(measureIngredient11);
-        measuredIngredients.add(measureIngredient12);
-        measuredIngredients.add(measureIngredient13);
-        measuredIngredients.add(measureIngredient14);
-        measuredIngredients.add(measureIngredient15);
+        if(measureIngredient1.getIngredient() != null) {
+            measuredIngredients.add(measureIngredient1);
+        }
+        if(measureIngredient2.getIngredient() != null) {
+            measuredIngredients.add(measureIngredient2);
+        }
+        if(measureIngredient3.getIngredient() != null) {
+            measuredIngredients.add(measureIngredient3);
+        }
+        if(measureIngredient4.getIngredient() != null) {
+            measuredIngredients.add(measureIngredient4);
+        }
+        if(measureIngredient5.getIngredient() != null) {
+            measuredIngredients.add(measureIngredient5);
+        }
+        if(measureIngredient6.getIngredient() != null) {
+            measuredIngredients.add(measureIngredient6);
+        }
+        if(measureIngredient7.getIngredient() != null) {
+            measuredIngredients.add(measureIngredient7);
+        }
+        if(measureIngredient8.getIngredient() != null) {
+            measuredIngredients.add(measureIngredient8);
+        }
+        if(measureIngredient9.getIngredient() != null) {
+            measuredIngredients.add(measureIngredient9);
+        }
+        if(measureIngredient10.getIngredient() != null) {
+            measuredIngredients.add(measureIngredient10);
+        }
+        if(measureIngredient11.getIngredient() != null) {
+            measuredIngredients.add(measureIngredient11);
+        }
+        if(measureIngredient12.getIngredient() != null) {
+            measuredIngredients.add(measureIngredient12);
+        }
+        if(measureIngredient13.getIngredient() != null) {
+            measuredIngredients.add(measureIngredient13);
+        }
+        if(measureIngredient14.getIngredient() != null) {
+            measuredIngredients.add(measureIngredient14);
+        }
+        if(measureIngredient15.getIngredient() != null) {
+            measuredIngredients.add(measureIngredient15);
+        }
 
         return measuredIngredients;
 

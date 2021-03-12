@@ -12,7 +12,6 @@ import com.cs492.cocktailapp.data.LoadingStatus
 class BrowseViewModel : ViewModel() {
 
     private val cocktailRepository = CocktailRepository()
-
     private val mutableCategory = MutableLiveData<BrowseCategory>()
     private val mutableBrowseItems = MutableLiveData<ArrayList<CocktailRecipe>>()
     private val mutableLoadingStatus = MutableLiveData<LoadingStatus>().apply {

@@ -2,7 +2,6 @@ package com.cs492.cocktailapp.ui.main
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import com.google.android.material.tabs.TabLayout
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
@@ -12,6 +11,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.cs492.cocktailapp.R
 import com.cs492.cocktailapp.data.BrowseCategory
 import com.cs492.cocktailapp.data.CocktailRecipe
+import com.cs492.cocktailapp.ui.cocktail.DetailedCocktailActivity
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity(), BrowseFragmentListener {
@@ -75,9 +75,9 @@ class MainActivity : AppCompatActivity(), BrowseFragmentListener {
         // TODO(Kristina/Julian): Launch Recipe Intent
         // Just uncomment and swap out <recipe activity name> with your activity :)
 
-        //val intent = Intent(this, <recipe activity name>::class.java)
-        //intent.putExtra(<recipe activity name>.EXTRA_RECIPE, cocktailRecipe)
-        //startActivity(intent)
+        val intent = Intent(this, DetailedCocktailActivity::class.java)
+        intent.putExtra(DetailedCocktailActivity.EXTRA_RECIPE, cocktailRecipe)
+        startActivity(intent)
     }
 
     private fun launchSearchIntent() {
