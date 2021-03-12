@@ -14,6 +14,11 @@ import com.cs492.cocktailapp.data.CocktailRecipe
 class BrowseCategoryListAdapter : RecyclerView.Adapter<BrowseCategoryListAdapter.BrowseCategoryListItem>() {
 
     var cocktailRecipeList: ArrayList<CocktailRecipe> = arrayListOf()
+    set(value) {
+        field = value
+        notifyDataSetChanged()
+    }
+
     var onClickHandler: ((CocktailRecipe) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BrowseCategoryListItem {
