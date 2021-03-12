@@ -172,52 +172,6 @@ public class CocktailItem {
         return this.imageUrl;
     }
 
-    // returns all drink ingredients
-    public ArrayList<String> getIngredients() {
-        ArrayList<String> ingredients = new ArrayList<>();
-
-        ingredients.add(this.ingredient1);
-        ingredients.add(this.ingredient2);
-        ingredients.add(this.ingredient3);
-        ingredients.add(this.ingredient4);
-        ingredients.add(this.ingredient5);
-        ingredients.add(this.ingredient6);
-        ingredients.add(this.ingredient7);
-        ingredients.add(this.ingredient8);
-        ingredients.add(this.ingredient9);
-        ingredients.add(this.ingredient10);
-        ingredients.add(this.ingredient11);
-        ingredients.add(this.ingredient12);
-        ingredients.add(this.ingredient13);
-        ingredients.add(this.ingredient14);
-        ingredients.add(this.ingredient15);
-
-        return ingredients;
-    }
-
-    // returns all drink measurements
-    public ArrayList<String> getMeasurements() {
-        ArrayList<String> measurements = new ArrayList<>();
-
-        measurements.add(this.measure1);
-        measurements.add(this.measure2);
-        measurements.add(this.measure3);
-        measurements.add(this.measure4);
-        measurements.add(this.measure5);
-        measurements.add(this.measure6);
-        measurements.add(this.measure7);
-        measurements.add(this.measure8);
-        measurements.add(this.measure9);
-        measurements.add(this.measure10);
-        measurements.add(this.measure11);
-        measurements.add(this.measure12);
-        measurements.add(this.measure13);
-        measurements.add(this.measure14);
-        measurements.add(this.measure15);
-
-        return measurements;
-    }
-
     public ArrayList<MeasureIngredient> getMeasureIngredients(){
         ArrayList<MeasureIngredient> measuredIngredients = new ArrayList<>();
 
