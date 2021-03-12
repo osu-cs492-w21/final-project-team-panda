@@ -1,73 +1,19 @@
 package com.cs492.cocktailapp.ui.main
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.cs492.cocktailapp.api.CocktailRepository
 import com.cs492.cocktailapp.data.BrowseCategory
 import com.cs492.cocktailapp.data.CocktailRecipe
 import com.cs492.cocktailapp.data.LoadingStatus
-import com.cs492.cocktailapp.data.MeasureIngredient
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 class BrowseViewModel : ViewModel() {
 
+    private val cocktailRepository = CocktailRepository()
     private val mutableCategory = MutableLiveData<BrowseCategory>()
-
-    private val mutableBrowseItems = MutableLiveData<ArrayList<CocktailRecipe>>().apply {
-        value = arrayListOf(
-                CocktailRecipe(
-                        "Old Fashioned",
-                        11001,
-                        "https://www.thecocktaildb.com/images/media/drink/vrwquq1478252802.jpg",
-                        "Put it in a glass, baby!",
-                        "Serve in chill glass",
-                        arrayListOf(
-                                MeasureIngredient("Bourbon", "One bottle"),
-                                MeasureIngredient("Vodka", "2 Shots"),
-                                MeasureIngredient("Lime", "Half a lime"),
-                                MeasureIngredient("Testing123"),
-                                MeasureIngredient(),
-                                MeasureIngredient(),
-                                MeasureIngredient(),
-                                MeasureIngredient()
-                        ),
-                ),
-                CocktailRecipe(
-                        "Moscow Mule",
-                        11009,
-                        "https://www.thecocktaildb.com/images/media/drink/metwgh1606770327.jpg",
-                        "Put it in a glass, baby!",
-                        "Serve in copper mug",
-                        arrayListOf(
-                                MeasureIngredient("Bourbon", "One bottle"),
-                                MeasureIngredient("Lemon", "The whole thing"),
-                                MeasureIngredient("Ice", "Two scoops")
-                        ),
-                ),
-                CocktailRecipe(
-                        "Manhattan",
-                        11008,
-                        "https://www.thecocktaildb.com/images/media/drink/yk70e31606771240.jpg",
-                        "Shook not stirren!",
-                        "Serve in fancy triangle glass",
-                        arrayListOf(
-                                MeasureIngredient("Sunshine", "One bottle"),
-                                MeasureIngredient("A Manhattan person", "The whole thing")
-                        ),
-                ),
-                CocktailRecipe(
-                        "Margarita",
-                        11007,
-                        "https://www.thecocktaildb.com/images/media/drink/vrwquq1478252802.jpg",
-                        "Squeeze the lime!",
-                        "Serve in chilled martini glass.",
-                        arrayListOf(MeasureIngredient("Tequila", "Ba Bum Ba Dum Ba Dum Dum Dum")),
-                ),
-        )
-    }
-
+    private val mutableBrowseItems = MutableLiveData<ArrayList<CocktailRecipe>>()
     private val mutableLoadingStatus = MutableLiveData<LoadingStatus>().apply {
         value = LoadingStatus.Success
     }
@@ -83,22 +29,25 @@ class BrowseViewModel : ViewModel() {
 
     fun setCategory(category: BrowseCategory) {
         this.mutableCategory.value = category
+        loadBrowseItems()
     }
 
     fun loadBrowseItems() {
-        // TODO(ThuyVy/Julian/Anyone): Hook this up to repository by the category
+        category?.let {
+            cocktailRepository.getBrowse(it)
+                    .thenAccept{ recipes ->
+                        mutableLoadingStatus.value = LoadingStatus.Success
+                        Log.d("BrowseViewModel", recipes.toString())
+                        mutableBrowseItems.value = recipes as ArrayList<CocktailRecipe>
+                    }.exceptionally {
+                        mutableLoadingStatus.value = LoadingStatus.Error
+                        null
+                    }
 
-        // TODO(ThuyVy/Julian/Anyone): Remove; This is all just a mock to help develop the UI
-        // - - -
-        mutableLoadingStatus.value = LoadingStatus.Loading
-
-        GlobalScope.launch(Dispatchers.IO) {
-            Thread.sleep(1000)
-            GlobalScope.launch(Dispatchers.Main) {
-                mutableLoadingStatus.value = LoadingStatus.Error
-            }
+        } ?: run {
+            Log.w("BrowseViewModel", "Tried to load request without category set")
         }
-        // - - -
+
     }
 
 }
