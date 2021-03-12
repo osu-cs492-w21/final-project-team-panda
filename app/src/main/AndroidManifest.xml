@@ -13,7 +13,7 @@
         android:theme="@style/Theme.CocktailApp">
 
         <activity
-            android:name=".ui.main.DetailedCocktailActivity"
+            android:name=".ui.cocktail.DetailedCocktailActivity"
             android:label="@string/title_activity_detailed_cocktail"
             android:parentActivityName=".ui.main.MainActivity">
         </activity>

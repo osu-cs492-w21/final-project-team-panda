@@ -1,9 +1,8 @@
-package com.cs492.cocktailapp.ui.main;
+package com.cs492.cocktailapp.ui.cocktail;
 
 import android.content.Intent;
 import android.os.Bundle;
 
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;

@@ -1,4 +1,4 @@
-package com.cs492.cocktailapp.ui.main;
+package com.cs492.cocktailapp.ui.cocktail;
 
 import android.view.LayoutInflater;
 import android.view.View;
