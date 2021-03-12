@@ -19,7 +19,7 @@ class BrowseViewModel : ViewModel() {
         value = arrayListOf(
                 CocktailRecipe(
                         "Old Fashioned",
-                        0,
+                        11001,
                         "https://www.thecocktaildb.com/images/media/drink/vrwquq1478252802.jpg",
                         "Put it in a glass, baby!",
                         "Serve in chill glass",
@@ -36,7 +36,7 @@ class BrowseViewModel : ViewModel() {
                 ),
                 CocktailRecipe(
                         "Moscow Mule",
-                        1,
+                        11009,
                         "https://www.thecocktaildb.com/images/media/drink/metwgh1606770327.jpg",
                         "Put it in a glass, baby!",
                         "Serve in copper mug",
@@ -48,7 +48,7 @@ class BrowseViewModel : ViewModel() {
                 ),
                 CocktailRecipe(
                         "Manhattan",
-                        1,
+                        11008,
                         "https://www.thecocktaildb.com/images/media/drink/yk70e31606771240.jpg",
                         "Shook not stirren!",
                         "Serve in fancy triangle glass",
@@ -59,7 +59,7 @@ class BrowseViewModel : ViewModel() {
                 ),
                 CocktailRecipe(
                         "Margarita",
-                        0,
+                        11007,
                         "https://www.thecocktaildb.com/images/media/drink/vrwquq1478252802.jpg",
                         "Squeeze the lime!",
                         "Serve in chilled martini glass.",
