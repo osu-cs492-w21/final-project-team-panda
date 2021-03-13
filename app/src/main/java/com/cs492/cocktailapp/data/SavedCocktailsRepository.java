@@ -2,6 +2,7 @@ package com.cs492.cocktailapp.data;
 
 import android.app.Application;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
@@ -34,28 +35,28 @@ public class SavedCocktailsRepository {
 
         @Override
         protected Void doInBackground(SavedCocktail... cocktail) {
-            long id = savedCocktailsDaoAsync.insertCocktail(cocktail[0].cocktailItem);
-
-            for (CocktailIngredientsEntity ingredient : cocktail[0].cocktailIngredients) {
-                ingredient.setDrinkId((int)id);
-            }
-            savedCocktailsDaoAsync.insertIngredients(cocktail[0].cocktailIngredients);
+            long id = savedCocktailsDaoAsync.insertCocktail(cocktail[0].cocktailEntity);
+            Log.d("savedcocktailsrepo", "id insterted: " + id);
+//            for (CocktailIngredientsEntity ingredient : cocktail[0].cocktailIngredients) {
+//                ingredient.setDrinkId((int)id);
+//            }
+//            savedCocktailsDaoAsync.insertIngredients(cocktail[0].cocktailIngredients);
             return null;
         }
     }
 
-    public void deleteCocktail(CocktailEntity cocktail) {
+    public void deleteCocktail(SavedCocktail cocktail) {
         AppDatabase.databaseWriteExecutor.execute(
                 new Runnable() {
                     @Override
                     public void run() {
-                        savedCocktailsDao.delete(cocktail);
+                        savedCocktailsDao.deleteCocktail(cocktail.cocktailEntity);
                     }
                 }
         );
     }
 
-    public LiveData<List<SavedCocktail>> getAllSavedCocktails() {
+    public LiveData<List<CocktailEntity>> getAllSavedCocktails() {
         return savedCocktailsDao.getAllSavedCocktails();
     }
 }

@@ -10,12 +10,15 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.cs492.cocktailapp.R;
 import com.cs492.cocktailapp.data.CocktailRecipe;
+import com.cs492.cocktailapp.data.SavedCocktail;
+import com.cs492.cocktailapp.data.SavedCocktailsViewModel;
 
 public class DetailedCocktailActivity extends AppCompatActivity {
 
@@ -28,7 +31,7 @@ public class DetailedCocktailActivity extends AppCompatActivity {
     private IngredientAdapter ingredientAdapter;
 
     // TO DO: Add database stuff for favorited drinks
-    // private < (insert view model name) > viewModel
+    private SavedCocktailsViewModel viewModel;
     private boolean isFavorited;
 
     @Override
@@ -38,7 +41,12 @@ public class DetailedCocktailActivity extends AppCompatActivity {
 
         this.isFavorited = false;
         // TO DO: Initialize database ViewModel for favorited drinks
-        // this.viewModel = ....
+         this.viewModel = new ViewModelProvider(
+                 this,
+                 new ViewModelProvider.AndroidViewModelFactory(
+                        getApplication()
+                 )
+         ).get(SavedCocktailsViewModel.class);
 
         Intent intent =  getIntent();
         if(intent != null && intent.hasExtra(EXTRA_RECIPE)) {
@@ -102,10 +110,10 @@ public class DetailedCocktailActivity extends AppCompatActivity {
             menuItem.setChecked(this.isFavorited);
             if (this.isFavorited) {
                 menuItem.setIcon(R.drawable.ic_favorite);
-                //this.viewModel.insertFavoriteCocktail(this.cocktail);
+                this.viewModel.insertCocktail(this.cocktail);
             } else {
                 menuItem.setIcon(R.drawable.ic_favorite_border);
-                //this.viewModel.deleteFavoriteCocktail(this.cocktail);
+                this.viewModel.deleteCocktail(this.cocktail);
             }
         }
     }

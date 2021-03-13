@@ -12,15 +12,20 @@ gets returned by the DAO when the database is queried.
  */
 
 public class SavedCocktail {
-    @Embedded public CocktailEntity cocktailItem;
+    @Embedded public CocktailEntity cocktailEntity;
     @Relation(
             parentColumn = "id",
             entityColumn = "drinkId"
     )
     public List<CocktailIngredientsEntity> cocktailIngredients;
 
+    public SavedCocktail(CocktailEntity cocktailEntity, List<CocktailIngredientsEntity> ingredients) {
+        this.cocktailEntity = cocktailEntity;
+        this.cocktailIngredients = ingredients;
+    }
+
     // getters
-    public CocktailEntity getCocktailItem() { return this.cocktailItem; }
+    public CocktailEntity getCocktailItem() { return this.cocktailEntity; }
     public List<CocktailIngredientsEntity> getCocktailIngredients() {
         return this.cocktailIngredients;
     }

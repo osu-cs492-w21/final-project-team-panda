@@ -21,10 +21,16 @@ public interface SavedCocktailsDao {
     void insertIngredients(List<CocktailIngredientsEntity> ingredients);
 
     @Delete
-    void delete(CocktailEntity cocktail);
+    void deleteCocktail(CocktailEntity cocktail);
+
+    @Delete
+    void deleteIngredients(List<CocktailIngredientsEntity> ingredientsEntities);
+
+    @Query("DELETE FROM `cocktail-ingredients`")
+    void deleteIngredients();
 
     @Transaction
     @Query("SELECT * FROM cocktails")
-    public LiveData<List<SavedCocktail>> getAllSavedCocktails();
+    public LiveData<List<CocktailEntity>> getAllSavedCocktails();
 
 }
