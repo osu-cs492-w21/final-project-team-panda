@@ -3,16 +3,24 @@ package com.cs492.cocktailapp.data;
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 import static androidx.room.ForeignKey.CASCADE;
 
-@Entity(tableName = "cocktail-ingredients")
+@Entity(tableName = "cocktail-ingredients",
+        foreignKeys = {
+        @ForeignKey(entity = CocktailEntity.class,
+                    parentColumns = "id",
+                    childColumns = "drinkId",
+                    onDelete = CASCADE)},
+        indices = {
+                @Index("drinkId"),
+        })
 public class CocktailIngredientsEntity {
     @PrimaryKey(autoGenerate = true)
     @NonNull
     public int id;
-
     public int drinkId;
     public String ingredient;
     public String measurement;
@@ -24,7 +32,7 @@ public class CocktailIngredientsEntity {
     }
 
     // getters - required to have one for each member variable
-//    public int getId() { return this.id; }
+    public int getId() { return this.id; }
     public int getDrinkId() { return this.drinkId; }
     public String getIngredient() { return this.ingredient; }
     public String getMeasurement() { return this.measurement; }

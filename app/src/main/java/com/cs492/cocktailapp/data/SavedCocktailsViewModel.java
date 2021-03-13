@@ -39,17 +39,13 @@ public class SavedCocktailsViewModel extends AndroidViewModel {
                                     cocktail.getDrinkName(),
                                     cocktail.getDrinkGlass(),
                                     cocktail.getDrinkInstructions(),
-                                    cocktail.getDrinkImage()
-                                );
+                                    cocktail.getDrinkImage());
 
         for (MeasureIngredient ingredient:cocktail.getIngredientList()) {
-            cocktailIngredients.add(
-              new CocktailIngredientsEntity(
-                      cocktail.getDrinkId(),
-                      ingredient.getIngredient(),
-                      ingredient.getMeasurement()
-              )
-            );
+            cocktailIngredients.add(new CocktailIngredientsEntity(
+                                            cocktail.getDrinkId(),
+                                            ingredient.getIngredient(),
+                                            ingredient.getMeasurement()));
         }
 
         this.savedCocktail = new SavedCocktail(this.cocktailEntity, cocktailIngredients);

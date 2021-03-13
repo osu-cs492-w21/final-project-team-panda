@@ -35,12 +35,8 @@ public class SavedCocktailsRepository {
 
         @Override
         protected Void doInBackground(SavedCocktail... cocktail) {
-            long id = savedCocktailsDaoAsync.insertCocktail(cocktail[0].cocktailEntity);
-            Log.d("savedcocktailsrepo", "id insterted: " + id);
-//            for (CocktailIngredientsEntity ingredient : cocktail[0].cocktailIngredients) {
-//                ingredient.setDrinkId((int)id);
-//            }
-//            savedCocktailsDaoAsync.insertIngredients(cocktail[0].cocktailIngredients);
+            savedCocktailsDaoAsync.insertCocktail(cocktail[0].cocktailEntity);
+            savedCocktailsDaoAsync.insertIngredients(cocktail[0].cocktailIngredients);
             return null;
         }
     }
@@ -58,5 +54,9 @@ public class SavedCocktailsRepository {
 
     public LiveData<List<CocktailEntity>> getAllSavedCocktails() {
         return savedCocktailsDao.getAllSavedCocktails();
+    }
+
+    public SavedCocktail getSavedCocktailById(int drinkId) {
+        return savedCocktailsDao.getSavedCocktailById(drinkId);
     }
 }

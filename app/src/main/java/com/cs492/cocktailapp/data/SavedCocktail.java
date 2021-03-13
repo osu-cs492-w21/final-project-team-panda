@@ -19,9 +19,9 @@ public class SavedCocktail {
     )
     public List<CocktailIngredientsEntity> cocktailIngredients;
 
-    public SavedCocktail(CocktailEntity cocktailEntity, List<CocktailIngredientsEntity> ingredients) {
+    public SavedCocktail(CocktailEntity cocktailEntity, List<CocktailIngredientsEntity> cocktailIngredients) {
         this.cocktailEntity = cocktailEntity;
-        this.cocktailIngredients = ingredients;
+        this.cocktailIngredients = cocktailIngredients;
     }
 
     // getters

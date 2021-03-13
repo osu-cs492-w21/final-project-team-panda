@@ -40,7 +40,8 @@ public class DetailedCocktailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detailed_cocktail);
 
         this.isFavorited = false;
-        // TO DO: Initialize database ViewModel for favorited drinks
+
+        // Initialize database ViewModel for favorited drinks
          this.viewModel = new ViewModelProvider(
                  this,
                  new ViewModelProvider.AndroidViewModelFactory(
