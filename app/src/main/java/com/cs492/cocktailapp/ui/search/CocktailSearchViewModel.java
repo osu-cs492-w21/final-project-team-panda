@@ -15,8 +15,8 @@ public class CocktailSearchViewModel extends ViewModel {
     private final MutableLiveData<ArrayList<CocktailRecipe>> searchResults;
     private final MutableLiveData<LoadingStatus> loadingStatus;
 
-    public CocktailSearchViewModel(CocktailRepository repository) {
-        this.cocktailSearchRepository = repository;
+    public CocktailSearchViewModel() {
+        this.cocktailSearchRepository = new CocktailRepository();
         this.searchResults = new MutableLiveData<>();
         this.loadingStatus = new MutableLiveData<>();
         this.loadingStatus.setValue(LoadingStatus.Success);

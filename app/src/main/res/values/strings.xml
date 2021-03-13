@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">CocktailApp</string>
     <string name="title_activity_detailed_cocktail">DetailedCocktailActivity</string>
+    <string name="title_activity_search_cocktail">SearchCocktailActivity</string>
+
+    <string name="search_box_hint">Search Cocktail...</string>
+    <string name="search_button_text">Do Search</string>
+    <string name="loading_error">Unable to execute search.  Please check your internet connection.</string>
 
     <string name="action_search">Search</string>
 
