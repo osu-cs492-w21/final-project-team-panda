@@ -2,7 +2,6 @@ package com.cs492.cocktailapp.data;
 
 import android.app.Application;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
@@ -22,11 +21,11 @@ public class SavedCocktailsRepository {
     }
 
 
-    public void insertCocktail(SavedCocktail cocktail) {
+    public void insertCocktail(CocktailEntityWithIngredients cocktail) {
         new insertAsync(this.savedCocktailsDao).execute(cocktail);
     }
 
-    private static class insertAsync extends AsyncTask<SavedCocktail, Void, Void> {
+    private static class insertAsync extends AsyncTask<CocktailEntityWithIngredients, Void, Void> {
         private SavedCocktailsDao savedCocktailsDaoAsync;
 
         insertAsync(SavedCocktailsDao savedCocktailsDao) {
@@ -34,14 +33,14 @@ public class SavedCocktailsRepository {
         }
 
         @Override
-        protected Void doInBackground(SavedCocktail... cocktail) {
+        protected Void doInBackground(CocktailEntityWithIngredients... cocktail) {
             savedCocktailsDaoAsync.insertCocktail(cocktail[0].cocktailEntity);
             savedCocktailsDaoAsync.insertIngredients(cocktail[0].cocktailIngredients);
             return null;
         }
     }
 
-    public void deleteCocktail(SavedCocktail cocktail) {
+    public void deleteCocktail(CocktailEntityWithIngredients cocktail) {
         AppDatabase.databaseWriteExecutor.execute(
                 new Runnable() {
                     @Override
@@ -52,11 +51,11 @@ public class SavedCocktailsRepository {
         );
     }
 
-    public LiveData<List<SavedCocktail>> getAllSavedCocktails() {
+    public LiveData<List<CocktailEntityWithIngredients>> getAllSavedCocktails() {
         return savedCocktailsDao.getAllSavedCocktails();
     }
 
-    public LiveData<SavedCocktail> getSavedCocktailById(int drinkId) {
+    public LiveData<CocktailEntityWithIngredients> getSavedCocktailById(int drinkId) {
         return savedCocktailsDao.getSavedCocktailById(drinkId);
     }
 }

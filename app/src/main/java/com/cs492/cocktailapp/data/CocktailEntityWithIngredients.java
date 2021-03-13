@@ -11,7 +11,7 @@ defined here: https://developer.android.com/training/data-storage/room/relations
 gets returned by the DAO when the database is queried.
  */
 
-public class SavedCocktail {
+public class CocktailEntityWithIngredients {
     @Embedded public CocktailEntity cocktailEntity;
     @Relation(
             parentColumn = "id",
@@ -19,12 +19,11 @@ public class SavedCocktail {
     )
     public List<MeasureIngredient> cocktailIngredients;
 
-    public SavedCocktail(CocktailEntity cocktailEntity, List<MeasureIngredient> cocktailIngredients) {
+    public CocktailEntityWithIngredients(CocktailEntity cocktailEntity, List<MeasureIngredient> cocktailIngredients) {
         this.cocktailEntity = cocktailEntity;
         this.cocktailIngredients = cocktailIngredients;
     }
 
-    // getters
     public CocktailEntity getCocktailItem() { return this.cocktailEntity; }
     public List<MeasureIngredient> getCocktailIngredients() {
         return this.cocktailIngredients;

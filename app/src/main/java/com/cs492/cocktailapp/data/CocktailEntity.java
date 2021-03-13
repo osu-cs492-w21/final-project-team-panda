@@ -31,14 +31,12 @@ public class CocktailEntity implements Serializable {
         this.imageUrl = imageUrl;
     }
 
-    // setters - required to have one for each member variable
     public void setId(int id) { this.id = id; }
     public void setName(String name) { this.name = name; }
     public void setGlass(String glass) { this.glass = glass; }
     public void setInstructions(String instructions) { this.instructions = instructions; }
     public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
 
-    // getters - required to have one for each member variable
     public int getId() {
         return this.id;
     }

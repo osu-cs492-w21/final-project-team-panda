@@ -17,26 +17,26 @@ public class SavedCocktailsViewModel extends AndroidViewModel {
     }
 
     public void insertCocktail(CocktailRecipe cocktail) {
-        SavedCocktail savedCocktail = convertRecipeToEntity(cocktail);
-        savedCocktailsRepository.insertCocktail(savedCocktail);
+        CocktailEntityWithIngredients cocktailEntityWithIngredients = convertRecipeToEntity(cocktail);
+        savedCocktailsRepository.insertCocktail(cocktailEntityWithIngredients);
     }
 
     public void deleteCocktail(CocktailRecipe cocktail) {
-        SavedCocktail savedCocktail = convertRecipeToEntity(cocktail);
-        savedCocktailsRepository.deleteCocktail(savedCocktail);
+        CocktailEntityWithIngredients cocktailEntityWithIngredients = convertRecipeToEntity(cocktail);
+        savedCocktailsRepository.deleteCocktail(cocktailEntityWithIngredients);
     }
 
-    public LiveData<List<SavedCocktail>> getAllSavedCocktails() {
+    public LiveData<List<CocktailEntityWithIngredients>> getAllSavedCocktails() {
         return savedCocktailsRepository.getAllSavedCocktails();
     }
 
-    public LiveData<SavedCocktail> getSavedCocktailById(int drinkId) {
+    public LiveData<CocktailEntityWithIngredients> getSavedCocktailById(int drinkId) {
         return savedCocktailsRepository.getSavedCocktailById(drinkId);
     }
 
 
-    // Helper function to convert from SavedCocktail entity to CocktailRecipe
-    private CocktailRecipe convertEntityToRecipe(SavedCocktail cocktail) {
+    // Helper function to convert from CocktailEntityWithIngredients to CocktailRecipe
+    private CocktailRecipe convertEntityToRecipe(CocktailEntityWithIngredients cocktail) {
         CocktailEntity entity = cocktail.getCocktailItem();
         ArrayList<MeasureIngredient> ingredients =
                 (ArrayList<MeasureIngredient>) cocktail.getCocktailIngredients();
@@ -51,8 +51,8 @@ public class SavedCocktailsViewModel extends AndroidViewModel {
         return recipe;
     }
 
-    // Helper function to convert CocktailRecipe to SavedCocktail entity
-    private SavedCocktail convertRecipeToEntity(CocktailRecipe cocktail) {
+    // Helper function to convert CocktailRecipe to CocktailEntityWithIngredients
+    private CocktailEntityWithIngredients convertRecipeToEntity(CocktailRecipe cocktail) {
         List<MeasureIngredient> cocktailIngredients = new ArrayList<>();
         CocktailEntity cocktailEntity = new CocktailEntity(
                                     cocktail.getDrinkId(),
@@ -67,6 +67,6 @@ public class SavedCocktailsViewModel extends AndroidViewModel {
                                             ingredient.getIngredient(),
                                             ingredient.getMeasurement()));
         }
-        return new SavedCocktail(cocktailEntity, cocktailIngredients);
+        return new CocktailEntityWithIngredients(cocktailEntity, cocktailIngredients);
     }
 }

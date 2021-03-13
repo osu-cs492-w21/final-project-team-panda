@@ -3,7 +3,6 @@ package com.cs492.cocktailapp.data;
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
-import androidx.room.Ignore;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -25,9 +24,9 @@ public interface SavedCocktailsDao {
 
     @Transaction
     @Query("SELECT * FROM cocktails")
-    LiveData<List<SavedCocktail>> getAllSavedCocktails();
+    LiveData<List<CocktailEntityWithIngredients>> getAllSavedCocktails();
 
     @Transaction
     @Query("SELECT * FROM cocktails WHERE id = :drinkId LIMIT 1")
-    LiveData<SavedCocktail> getSavedCocktailById(int drinkId);
+    LiveData<CocktailEntityWithIngredients> getSavedCocktailById(int drinkId);
 }
