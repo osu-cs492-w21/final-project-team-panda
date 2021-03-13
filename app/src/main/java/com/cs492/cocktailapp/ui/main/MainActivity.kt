@@ -12,6 +12,7 @@ import com.cs492.cocktailapp.R
 import com.cs492.cocktailapp.data.BrowseCategory
 import com.cs492.cocktailapp.data.CocktailRecipe
 import com.cs492.cocktailapp.ui.cocktail.DetailedCocktailActivity
+import com.cs492.cocktailapp.ui.search.SearchCocktailActivity
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity(), BrowseFragmentListener {
@@ -84,8 +85,8 @@ class MainActivity : AppCompatActivity(), BrowseFragmentListener {
         // TODO(ThuyVy/Natalie) : Launch search intent
         // Just uncomment and swap out <search activity name> with your activity :)
 
-        //val intent = Intent(this, <search activity name>::class.java)
-        //startActivity(intent)
+        val intent = Intent(this, SearchCocktailActivity::class.java)
+        startActivity(intent)
     }
 
 }
