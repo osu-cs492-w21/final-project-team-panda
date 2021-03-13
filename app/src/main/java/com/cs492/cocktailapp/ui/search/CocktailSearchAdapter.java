@@ -3,11 +3,13 @@ package com.cs492.cocktailapp.ui.search;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.cs492.cocktailapp.R;
 import com.cs492.cocktailapp.data.CocktailRecipe;
 
@@ -55,10 +57,13 @@ public class CocktailSearchAdapter extends RecyclerView.Adapter<CocktailSearchAd
 
     class SearchResultViewHolder extends RecyclerView.ViewHolder {
         private TextView searchResultTV;
+        private ImageView cocktailImage;
+
 
         SearchResultViewHolder(View itemView) {
             super(itemView);
             this.searchResultTV = itemView.findViewById(R.id.searchItemName);
+            this.cocktailImage = itemView.findViewById(R.id.searchItemCocktailImage);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -72,6 +77,9 @@ public class CocktailSearchAdapter extends RecyclerView.Adapter<CocktailSearchAd
 
         void bind(CocktailRecipe recipe) {
             this.searchResultTV.setText(recipe.getDrinkName());
+            Glide.with(itemView)
+                    .load(recipe.getDrinkImage())
+                    .into(cocktailImage);
         }
     }
 
