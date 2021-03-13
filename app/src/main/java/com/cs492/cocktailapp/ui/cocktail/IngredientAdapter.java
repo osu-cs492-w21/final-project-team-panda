@@ -1,5 +1,6 @@
 package com.cs492.cocktailapp.ui.cocktail;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,7 +49,7 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
         notifyDataSetChanged();
     }
 
-    public class IngredientItemViewHolder extends RecyclerView.ViewHolder {
+    public static class IngredientItemViewHolder extends RecyclerView.ViewHolder {
         final private TextView measurementName;
         final private TextView measurementAmount;
 
@@ -59,11 +60,9 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
         }
 
         void bind(MeasureIngredient item) {
-            if(item.getIngredient() != null && item.getIngredient() != "") {
-                measurementName.setText(item.getIngredient());
-            }
-            if(item.getMeasurement() != null && item.getMeasurement() != "") {
-                measurementAmount.setText(": " + item.getMeasurement());
+            measurementName.setText(item.getIngredient());
+            if(item.getMeasurement() != null && !item.getMeasurement().equals("")) {
+                measurementAmount.setText(item.getMeasurement());
             }
         }
     }

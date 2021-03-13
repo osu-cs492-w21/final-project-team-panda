@@ -1,53 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp"
-    android:orientation="vertical"
-    tools:context=".ui.cocktail.DetailedCocktailActivity">
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/detailed_cocktail_image"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        app:layout_constraintDimensionRatio="H,7:4"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:scaleType="center"
-        />
-
-    <TextView
-        android:id="@+id/detailed_cocktail_name"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?attr/textAppearanceHeadline5"/>
-    <TextView
-        android:id="@+id/detailed_cocktail_glass"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:id="@+id/detailed_cocktail_instructions"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:orientation="vertical"
+        android:padding="@dimen/activity_vertical_margin"
+        app:layout_constraintTop_toBottomOf="@+id/detailed_cocktail_image">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Ingredients: "
-        android:textAppearance="?attr/textAppearanceHeadline5"/>
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/image_card_corner_radius">
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:context=".ui.cocktail.DetailedCocktailActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_ingredient_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+                <ImageView
+                    android:id="@+id/detailed_cocktail_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="H,1:1"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:scaleType="center" />
 
-</LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/detailed_cocktail_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:textAppearance="?attr/textAppearanceHeadline4"
+            android:layout_marginTop="@dimen/detail_section_header_margin_top"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/detail_ingredients_header"
+            android:textAppearance="?attr/textAppearanceOverline"
+            android:layout_marginTop="@dimen/detail_section_header_margin_top"
+            android:layout_marginBottom="@dimen/detail_section_header_margin_bottom"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_ingredient_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/detail_instructions_header"
+            android:textAppearance="?attr/textAppearanceOverline"
+            android:layout_marginTop="@dimen/detail_section_header_margin_top"
+            android:layout_marginBottom="@dimen/detail_section_header_margin_bottom" />
+
+        <TextView
+            android:id="@+id/detailed_cocktail_instructions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/detail_serve_header"
+            android:textAppearance="?attr/textAppearanceOverline"
+            android:layout_marginTop="@dimen/detail_section_header_margin_top"
+            android:layout_marginBottom="@dimen/detail_section_header_margin_bottom" />
+
+        <TextView
+            android:id="@+id/detailed_cocktail_glass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+</ScrollView>
 
 
 

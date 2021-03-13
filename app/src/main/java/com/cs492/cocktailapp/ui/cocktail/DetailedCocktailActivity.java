@@ -44,7 +44,7 @@ public class DetailedCocktailActivity extends AppCompatActivity {
         if(intent != null && intent.hasExtra(EXTRA_RECIPE)) {
             this.cocktail = (CocktailRecipe)intent.getSerializableExtra(EXTRA_RECIPE);
 
-            setTitle(cocktail.getDrinkName() + " Recipe");
+            setTitle(cocktail.getDrinkName());
 
             TextView cocktailName = findViewById(R.id.detailed_cocktail_name);
             TextView cocktailGlass = findViewById(R.id.detailed_cocktail_glass);
@@ -52,8 +52,8 @@ public class DetailedCocktailActivity extends AppCompatActivity {
             ImageView cocktailImage = findViewById(R.id.detailed_cocktail_image);
 
             cocktailName.setText(cocktail.getDrinkName());
-            cocktailGlass.setText("Glass: " + cocktail.getDrinkGlass());
-            cocktailInstructions.setText("Instructions: \n" + cocktail.getDrinkInstructions());
+            cocktailGlass.setText(cocktail.getDrinkGlass());
+            cocktailInstructions.setText(cocktail.getDrinkInstructions());
             Glide.with(this)
                     .load(this.cocktail.getDrinkImage())
                     .into(cocktailImage);
