@@ -10,8 +10,6 @@ import java.util.List;
 
 public class SavedCocktailsViewModel extends AndroidViewModel {
     private SavedCocktailsRepository savedCocktailsRepository;
-    private CocktailEntity cocktailEntity;
-    private SavedCocktail savedCocktail;
 
     public SavedCocktailsViewModel(Application application) {
         super(application);
@@ -19,22 +17,44 @@ public class SavedCocktailsViewModel extends AndroidViewModel {
     }
 
     public void insertCocktail(CocktailRecipe cocktail) {
-        convertRecipeToEntity(cocktail);
-        savedCocktailsRepository.insertCocktail(this.savedCocktail);
+        SavedCocktail savedCocktail = convertRecipeToEntity(cocktail);
+        savedCocktailsRepository.insertCocktail(savedCocktail);
     }
 
     public void deleteCocktail(CocktailRecipe cocktail) {
-        convertRecipeToEntity(cocktail);
-        savedCocktailsRepository.deleteCocktail(this.savedCocktail);
+        SavedCocktail savedCocktail = convertRecipeToEntity(cocktail);
+        savedCocktailsRepository.deleteCocktail(savedCocktail);
     }
 
-    public LiveData<List<CocktailEntity>> getAllSavedCocktails() {
+    public LiveData<List<SavedCocktail>> getAllSavedCocktails() {
         return savedCocktailsRepository.getAllSavedCocktails();
     }
 
-    private void convertRecipeToEntity(CocktailRecipe cocktail) {
-        List<CocktailIngredientsEntity> cocktailIngredients = new ArrayList<>();
-        this.cocktailEntity = new CocktailEntity(
+    public LiveData<SavedCocktail> getSavedCocktailById(int drinkId) {
+        return savedCocktailsRepository.getSavedCocktailById(drinkId);
+    }
+
+
+    // Helper function to convert from SavedCocktail entity to CocktailRecipe
+    private CocktailRecipe convertEntityToRecipe(SavedCocktail cocktail) {
+        CocktailEntity entity = cocktail.getCocktailItem();
+        ArrayList<MeasureIngredient> ingredients =
+                (ArrayList<MeasureIngredient>) cocktail.getCocktailIngredients();
+        CocktailRecipe recipe = new CocktailRecipe(
+                entity.getName(),
+                entity.getId(),
+                entity.getImageUrl(),
+                entity.getInstructions(),
+                entity.getGlass(),
+                ingredients
+        );
+        return recipe;
+    }
+
+    // Helper function to convert CocktailRecipe to SavedCocktail entity
+    private SavedCocktail convertRecipeToEntity(CocktailRecipe cocktail) {
+        List<MeasureIngredient> cocktailIngredients = new ArrayList<>();
+        CocktailEntity cocktailEntity = new CocktailEntity(
                                     cocktail.getDrinkId(),
                                     cocktail.getDrinkName(),
                                     cocktail.getDrinkGlass(),
@@ -42,12 +62,11 @@ public class SavedCocktailsViewModel extends AndroidViewModel {
                                     cocktail.getDrinkImage());
 
         for (MeasureIngredient ingredient:cocktail.getIngredientList()) {
-            cocktailIngredients.add(new CocktailIngredientsEntity(
+            cocktailIngredients.add(new MeasureIngredient(
                                             cocktail.getDrinkId(),
                                             ingredient.getIngredient(),
                                             ingredient.getMeasurement()));
         }
-
-        this.savedCocktail = new SavedCocktail(this.cocktailEntity, cocktailIngredients);
+        return new SavedCocktail(cocktailEntity, cocktailIngredients);
     }
 }

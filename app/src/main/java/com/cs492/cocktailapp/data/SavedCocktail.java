@@ -17,16 +17,16 @@ public class SavedCocktail {
             parentColumn = "id",
             entityColumn = "drinkId"
     )
-    public List<CocktailIngredientsEntity> cocktailIngredients;
+    public List<MeasureIngredient> cocktailIngredients;
 
-    public SavedCocktail(CocktailEntity cocktailEntity, List<CocktailIngredientsEntity> cocktailIngredients) {
+    public SavedCocktail(CocktailEntity cocktailEntity, List<MeasureIngredient> cocktailIngredients) {
         this.cocktailEntity = cocktailEntity;
         this.cocktailIngredients = cocktailIngredients;
     }
 
     // getters
     public CocktailEntity getCocktailItem() { return this.cocktailEntity; }
-    public List<CocktailIngredientsEntity> getCocktailIngredients() {
+    public List<MeasureIngredient> getCocktailIngredients() {
         return this.cocktailIngredients;
     }
 }

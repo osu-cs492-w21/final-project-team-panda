@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,7 +31,6 @@ public class DetailedCocktailActivity extends AppCompatActivity {
     private RecyclerView ingredientListRV;
     private IngredientAdapter ingredientAdapter;
 
-    // TO DO: Add database stuff for favorited drinks
     private SavedCocktailsViewModel viewModel;
     private boolean isFavorited;
 
@@ -84,8 +84,22 @@ public class DetailedCocktailActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.cocktail_detail_menu, menu);
 
-        // TO DO: check if drink is favorited in database
-
+        // Check if drink is saved in database
+        this.viewModel.getSavedCocktailById(this.cocktail.getDrinkId()).observe(
+                this, new Observer<SavedCocktail>() {
+                    @Override
+                    public void onChanged(SavedCocktail cocktail) {
+                        if(cocktail != null) {
+                            isFavorited = true;
+                            menu.findItem(R.id.action_favorite).setIcon(R.drawable.ic_favorite);
+                        }
+                        else {
+                            isFavorited = false;
+                            menu.findItem(R.id.action_favorite).setIcon(R.drawable.ic_favorite_border);
+                        }
+                    }
+                }
+        );
         return true;
     }
 
@@ -104,16 +118,13 @@ public class DetailedCocktailActivity extends AppCompatActivity {
 
     }
 
-    // TO DO: Hook up favorite button with database functions
     private void toggleDrinkFavorite(MenuItem menuItem) {
         if (this.cocktail != null) {
             this.isFavorited = !this.isFavorited;
             menuItem.setChecked(this.isFavorited);
             if (this.isFavorited) {
-                menuItem.setIcon(R.drawable.ic_favorite);
                 this.viewModel.insertCocktail(this.cocktail);
             } else {
-                menuItem.setIcon(R.drawable.ic_favorite_border);
                 this.viewModel.deleteCocktail(this.cocktail);
             }
         }

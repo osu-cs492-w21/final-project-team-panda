@@ -52,11 +52,11 @@ public class SavedCocktailsRepository {
         );
     }
 
-    public LiveData<List<CocktailEntity>> getAllSavedCocktails() {
+    public LiveData<List<SavedCocktail>> getAllSavedCocktails() {
         return savedCocktailsDao.getAllSavedCocktails();
     }
 
-    public SavedCocktail getSavedCocktailById(int drinkId) {
+    public LiveData<SavedCocktail> getSavedCocktailById(int drinkId) {
         return savedCocktailsDao.getSavedCocktailById(drinkId);
     }
 }

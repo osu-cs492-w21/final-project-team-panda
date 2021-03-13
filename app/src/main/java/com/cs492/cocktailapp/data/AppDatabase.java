@@ -12,7 +12,7 @@ import java.util.concurrent.Executors;
 @Database(
         entities = {
             CocktailEntity.class,
-            CocktailIngredientsEntity.class
+            MeasureIngredient.class
         },
         version = 1
 )

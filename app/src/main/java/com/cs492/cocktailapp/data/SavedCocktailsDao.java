@@ -18,16 +18,16 @@ public interface SavedCocktailsDao {
     long insertCocktail(CocktailEntity cocktail);
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    void insertIngredients(List<CocktailIngredientsEntity> ingredients);
+    void insertIngredients(List<MeasureIngredient> ingredients);
 
     @Delete
     void deleteCocktail(CocktailEntity cocktail);
 
     @Transaction
     @Query("SELECT * FROM cocktails")
-    LiveData<List<CocktailEntity>> getAllSavedCocktails();
+    LiveData<List<SavedCocktail>> getAllSavedCocktails();
 
     @Transaction
-    @Query("SELECT * FROM cocktails WHERE id = :drinkId")
-    SavedCocktail getSavedCocktailById(int drinkId);
+    @Query("SELECT * FROM cocktails WHERE id = :drinkId LIMIT 1")
+    LiveData<SavedCocktail> getSavedCocktailById(int drinkId);
 }
