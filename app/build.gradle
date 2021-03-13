@@ -1,7 +1,19 @@
 plugins {
     id 'com.android.application'
 }
+
 apply plugin: 'kotlin-android'
+// Kotlin Annotation Processor
+apply plugin: 'kotlin-kapt'
+
+def apiKeyProperties = new Properties()
+apiKeyProperties.setProperty("COCKTAIL_DB_API_KEY", "\"1\"") // Fall back to 1
+
+// Download from Google Drive
+def file = rootProject.file("api.properties")
+if (file.exists()) {
+    apiKeyProperties.load(new FileInputStream(file))
+}
 
 android {
     compileSdkVersion 30
@@ -13,6 +25,8 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
+
+        buildConfigField("String", "COCKTAIL_DB_API_KEY", apiKeyProperties['COCKTAIL_DB_API_KEY'])
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -48,7 +62,7 @@ dependencies {
 
     // Database
     implementation 'androidx.room:room-runtime:2.2.6'
-    annotationProcessor 'androidx.room:room-compiler:2.2.6'
+    kapt 'androidx.room:room-compiler:2.2.6'
 
     // Network
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
