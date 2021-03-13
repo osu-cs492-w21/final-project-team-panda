@@ -63,18 +63,19 @@ public class CocktailRepository {
     private ArrayList<CocktailRecipe> convertCocktailItemsToRecipes(List<CocktailItem> items){
         ArrayList<CocktailRecipe> recipes = new ArrayList<>();
 
-        for (CocktailItem item : items) {
-            CocktailRecipe obj = new CocktailRecipe(
-                    item.getDrinkName(),
-                    Integer.parseInt(item.getDrinkId()),
-                    item.getDrinkImage(),
-                    item.getDrinkInstructions(),
-                    item.getDrinkGlass(),
-                    item.getMeasureIngredients()
-            );
-            recipes.add(obj);
+        if(items != null) {
+            for (CocktailItem item : items) {
+                CocktailRecipe obj = new CocktailRecipe(
+                        item.getDrinkName(),
+                        Integer.parseInt(item.getDrinkId()),
+                        item.getDrinkImage(),
+                        item.getDrinkInstructions(),
+                        item.getDrinkGlass(),
+                        item.getMeasureIngredients()
+                );
+                recipes.add(obj);
+            }
         }
-
         return recipes;
     }
 
