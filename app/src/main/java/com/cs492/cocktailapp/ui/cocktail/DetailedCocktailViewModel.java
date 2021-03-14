@@ -11,7 +11,6 @@ import com.cs492.cocktailapp.db.CocktailEntityWithIngredients;
 import com.cs492.cocktailapp.db.SavedCocktailsRepository;
 
 public class DetailedCocktailViewModel extends AndroidViewModel {
-    private LiveData<CocktailEntityWithIngredients> cocktailEntityWithIngredientsLiveData;
     private SavedCocktailsRepository savedCocktailsRepository;
 
     public DetailedCocktailViewModel(Application application) {
