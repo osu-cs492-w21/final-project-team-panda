@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="PlainActionBar" parent="Widget.AppCompat.Toolbar">
-        <item name="android:background">@color/white</item>
-    </style>
 
     <style name="PlainActionBarDark" parent="Widget.AppCompat.Toolbar">
         <item name="android:background">?android:attr/colorBackground</item>
