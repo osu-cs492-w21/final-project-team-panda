@@ -20,5 +20,8 @@
     <string name="browse_error_no_saved_explanation">Use the bookmark button to download your favorite cocktail recipes for offline access.</string>
     <string name="browse_error_no_connection">You\'re offline</string>
     <string name="browse_error_no_connection_saved_suggestion">You can still view saved recipes without an internet connection.</string>
+    <string name="detail_ingredients_header">Ingredients</string>
+    <string name="detail_instructions_header">Instructions</string>
+    <string name="detail_serve_header">Serve</string>
 
 </resources>

@@ -6,111 +6,111 @@ import java.util.ArrayList;
 
 public class CocktailItem {
     @SerializedName("idDrink")
-    private String id;
+    private final String id;
 
     @SerializedName("strDrink")
-    private String name;
+    private final String name;
 
     @SerializedName("strGlass")
-    private String glass;
+    private final String glass;
 
     @SerializedName("strInstructions")
-    private String instructions;
+    private final String instructions;
 
     @SerializedName("strDrinkThumb")
-    private String imageUrl;
+    private final String imageUrl;
 
     // ingredients
     @SerializedName("strIngredient1")
-    private String ingredient1;
+    private final String ingredient1;
 
     @SerializedName("strIngredient2")
-    private String ingredient2;
+    private final String ingredient2;
 
     @SerializedName("strIngredient3")
-    private String ingredient3;
+    private final String ingredient3;
 
     @SerializedName("strIngredient4")
-    private String ingredient4;
+    private final String ingredient4;
 
     @SerializedName("strIngredient5")
-    private String ingredient5;
+    private final String ingredient5;
 
     @SerializedName("strIngredient6")
-    private String ingredient6;
+    private final String ingredient6;
 
     @SerializedName("strIngredient7")
-    private String ingredient7;
+    private final String ingredient7;
 
     @SerializedName("strIngredient8")
-    private String ingredient8;
+    private final String ingredient8;
 
     @SerializedName("strIngredient9")
-    private String ingredient9;
+    private final String ingredient9;
 
     @SerializedName("strIngredient10")
-    private String ingredient10;
+    private final String ingredient10;
 
     @SerializedName("strIngredient11")
-    private String ingredient11;
+    private final String ingredient11;
 
     @SerializedName("strIngredient12")
-    private String ingredient12;
+    private final String ingredient12;
 
     @SerializedName("strIngredient13")
-    private String ingredient13;
+    private final String ingredient13;
 
     @SerializedName("strIngredient14")
-    private String ingredient14;
+    private final String ingredient14;
 
     @SerializedName("strIngredient15")
-    private String ingredient15;
+    private final String ingredient15;
 
     // measurements
     @SerializedName("strMeasure1")
-    private String measure1;
+    private final String measure1;
 
     @SerializedName("strMeasure2")
-    private String measure2;
+    private final String measure2;
 
     @SerializedName("strMeasure3")
-    private String measure3;
+    private final String measure3;
 
     @SerializedName("strMeasure4")
-    private String measure4;
+    private final String measure4;
 
     @SerializedName("strMeasure5")
-    private String measure5;
+    private final String measure5;
 
     @SerializedName("strMeasure6")
-    private String measure6;
+    private final String measure6;
 
     @SerializedName("strMeasure7")
-    private String measure7;
+    private final String measure7;
 
     @SerializedName("strMeasure8")
-    private String measure8;
+    private final String measure8;
 
     @SerializedName("strMeasure9")
-    private String measure9;
+    private final String measure9;
 
     @SerializedName("strMeasure10")
-    private String measure10;
+    private final String measure10;
 
     @SerializedName("strMeasure11")
-    private String measure11;
+    private final String measure11;
 
     @SerializedName("strMeasure12")
-    private String measure12;
+    private final String measure12;
 
     @SerializedName("strMeasure13")
-    private String measure13;
+    private final String measure13;
 
     @SerializedName("strMeasure14")
-    private String measure14;
+    private final String measure14;
 
     @SerializedName("strMeasure15")
-    private String measure15;
+    private final String measure15;
     
     public CocktailItem() {
         this.id = null;
@@ -191,49 +191,49 @@ public class CocktailItem {
         MeasureIngredient measureIngredient14 = new MeasureIngredient(this.ingredient14, this.measure14);
         MeasureIngredient measureIngredient15 = new MeasureIngredient(this.ingredient15, this.measure15);
 
-        if(measureIngredient1.getIngredient() != null) {
+        if(measureIngredient1.getIngredient() != null && !measureIngredient1.getIngredient().equals("")) {
             measuredIngredients.add(measureIngredient1);
         }
-        if(measureIngredient2.getIngredient() != null) {
+        if(measureIngredient2.getIngredient() != null && !measureIngredient2.getIngredient().equals("")) {
             measuredIngredients.add(measureIngredient2);
         }
-        if(measureIngredient3.getIngredient() != null) {
+        if(measureIngredient3.getIngredient() != null && !measureIngredient3.getIngredient().equals("")) {
             measuredIngredients.add(measureIngredient3);
         }
-        if(measureIngredient4.getIngredient() != null) {
+        if(measureIngredient4.getIngredient() != null && !measureIngredient4.getIngredient().equals("")) {
             measuredIngredients.add(measureIngredient4);
         }
-        if(measureIngredient5.getIngredient() != null) {
+        if(measureIngredient5.getIngredient() != null && !measureIngredient5.getIngredient().equals("")) {
             measuredIngredients.add(measureIngredient5);
         }
-        if(measureIngredient6.getIngredient() != null) {
+        if(measureIngredient6.getIngredient() != null && !measureIngredient6.getIngredient().equals("")) {
             measuredIngredients.add(measureIngredient6);
         }
-        if(measureIngredient7.getIngredient() != null) {
+        if(measureIngredient7.getIngredient() != null && !measureIngredient7.getIngredient().equals("")) {
             measuredIngredients.add(measureIngredient7);
         }
-        if(measureIngredient8.getIngredient() != null) {
+        if(measureIngredient8.getIngredient() != null && !measureIngredient8.getIngredient().equals("")) {
             measuredIngredients.add(measureIngredient8);
         }
-        if(measureIngredient9.getIngredient() != null) {
+        if(measureIngredient9.getIngredient() != null && !measureIngredient9.getIngredient().equals("")) {
             measuredIngredients.add(measureIngredient9);
         }
-        if(measureIngredient10.getIngredient() != null) {
+        if(measureIngredient10.getIngredient() != null && !measureIngredient10.getIngredient().equals("")) {
             measuredIngredients.add(measureIngredient10);
         }
-        if(measureIngredient11.getIngredient() != null) {
+        if(measureIngredient11.getIngredient() != null && !measureIngredient11.getIngredient().equals("")) {
             measuredIngredients.add(measureIngredient11);
         }
-        if(measureIngredient12.getIngredient() != null) {
+        if(measureIngredient12.getIngredient() != null && !measureIngredient12.getIngredient().equals("")) {
             measuredIngredients.add(measureIngredient12);
         }
-        if(measureIngredient13.getIngredient() != null) {
+        if(measureIngredient13.getIngredient() != null && !measureIngredient13.getIngredient().equals("")) {
             measuredIngredients.add(measureIngredient13);
         }
-        if(measureIngredient14.getIngredient() != null) {
+        if(measureIngredient14.getIngredient() != null && !measureIngredient14.getIngredient().equals("")) {
             measuredIngredients.add(measureIngredient14);
         }
-        if(measureIngredient15.getIngredient() != null) {
+        if(measureIngredient15.getIngredient() != null && !measureIngredient15.getIngredient().equals("")) {
             measuredIngredients.add(measureIngredient15);
         }
 

@@ -7,7 +7,10 @@
     <dimen name="appbar_padding_top">8dp</dimen>
 
     <!-- Custom -->
+    <dimen name="image_card_corner_radius">8dp</dimen>
     <dimen name="text_horizontal_margin">32dp</dimen>
+    <dimen name="detail_section_header_margin_top">16dp</dimen>
+    <dimen name="detail_section_header_margin_bottom">4dp</dimen>
     <!--
     Because the window insets on round devices are larger than 15dp, this padding only applies
     to square screens.
