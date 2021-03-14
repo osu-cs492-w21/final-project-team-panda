@@ -8,6 +8,7 @@ import com.cs492.cocktailapp.api.CocktailRepository
 import com.cs492.cocktailapp.data.BrowseCategory
 import com.cs492.cocktailapp.data.CocktailRecipe
 import com.cs492.cocktailapp.data.LoadingStatus
+import com.cs492.cocktailapp.db.CocktailEntityWithIngredients
 
 class BrowseViewModel : ViewModel() {
 
@@ -49,5 +50,10 @@ class BrowseViewModel : ViewModel() {
         }
 
     }
+
+//    fun getAllSavedCocktails(): LiveData<List<CocktailEntityWithIngredients?>?>? {
+//        return savedCocktailsRepository.getAllSavedCocktails()
+//    }
+
 
 }

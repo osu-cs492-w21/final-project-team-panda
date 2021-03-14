@@ -10,11 +10,14 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.cs492.cocktailapp.R;
+import com.cs492.cocktailapp.db.CocktailEntityWithIngredients;
 import com.cs492.cocktailapp.data.CocktailRecipe;
 
 public class DetailedCocktailActivity extends AppCompatActivity {
@@ -27,8 +30,7 @@ public class DetailedCocktailActivity extends AppCompatActivity {
     private RecyclerView ingredientListRV;
     private IngredientAdapter ingredientAdapter;
 
-    // TO DO: Add database stuff for favorited drinks
-    // private < (insert view model name) > viewModel
+    private DetailedCocktailViewModel viewModel;
     private boolean isFavorited;
 
     @Override
@@ -37,8 +39,14 @@ public class DetailedCocktailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detailed_cocktail);
 
         this.isFavorited = false;
-        // TO DO: Initialize database ViewModel for favorited drinks
-        // this.viewModel = ....
+
+        // Initialize database ViewModel for favorited drinks
+        this.viewModel = new ViewModelProvider(
+             this,
+             new ViewModelProvider.AndroidViewModelFactory(
+                    getApplication()
+             )
+        ).get(DetailedCocktailViewModel.class);
 
         Intent intent =  getIntent();
         if(intent != null && intent.hasExtra(EXTRA_RECIPE)) {
@@ -75,8 +83,22 @@ public class DetailedCocktailActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.cocktail_detail_menu, menu);
 
-        // TO DO: check if drink is favorited in database
-
+        // Check if drink is saved in database
+        this.viewModel.getSavedCocktailById(this.cocktail.getDrinkId()).observe(
+                this, new Observer<CocktailEntityWithIngredients>() {
+                    @Override
+                    public void onChanged(CocktailEntityWithIngredients cocktail) {
+                        if(cocktail != null) {
+                            isFavorited = true;
+                            menu.findItem(R.id.action_favorite).setIcon(R.drawable.ic_favorite);
+                        }
+                        else {
+                            isFavorited = false;
+                            menu.findItem(R.id.action_favorite).setIcon(R.drawable.ic_favorite_border);
+                        }
+                    }
+                }
+        );
         return true;
     }
 
@@ -95,17 +117,14 @@ public class DetailedCocktailActivity extends AppCompatActivity {
 
     }
 
-    // TO DO: Hook up favorite button with database functions
     private void toggleDrinkFavorite(MenuItem menuItem) {
         if (this.cocktail != null) {
             this.isFavorited = !this.isFavorited;
             menuItem.setChecked(this.isFavorited);
             if (this.isFavorited) {
-                menuItem.setIcon(R.drawable.ic_favorite);
-                //this.viewModel.insertFavoriteCocktail(this.cocktail);
+                this.viewModel.insertCocktail(this.cocktail);
             } else {
-                menuItem.setIcon(R.drawable.ic_favorite_border);
-                //this.viewModel.deleteFavoriteCocktail(this.cocktail);
+                this.viewModel.deleteCocktail(this.cocktail);
             }
         }
     }
