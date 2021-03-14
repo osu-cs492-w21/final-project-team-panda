@@ -41,12 +41,12 @@ public class DetailedCocktailActivity extends AppCompatActivity {
         this.isFavorited = false;
 
         // Initialize database ViewModel for favorited drinks
-         this.viewModel = new ViewModelProvider(
-                 this,
-                 new ViewModelProvider.AndroidViewModelFactory(
-                        getApplication()
-                 )
-         ).get(DetailedCocktailViewModel.class);
+        this.viewModel = new ViewModelProvider(
+             this,
+             new ViewModelProvider.AndroidViewModelFactory(
+                    getApplication()
+             )
+        ).get(DetailedCocktailViewModel.class);
 
         Intent intent =  getIntent();
         if(intent != null && intent.hasExtra(EXTRA_RECIPE)) {

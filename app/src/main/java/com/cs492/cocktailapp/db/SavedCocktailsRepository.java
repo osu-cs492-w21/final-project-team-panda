@@ -30,7 +30,8 @@ public class SavedCocktailsRepository {
     }
 
 
-    public void insertCocktail(CocktailEntityWithIngredients cocktail) {
+    public void insertCocktail(CocktailRecipe cocktailRecipe) {
+        CocktailEntityWithIngredients cocktail = convertRecipeToEntity(cocktailRecipe);
         new insertAsync(this.savedCocktailsDao).execute(cocktail);
     }
 
@@ -49,7 +50,8 @@ public class SavedCocktailsRepository {
         }
     }
 
-    public void deleteCocktail(CocktailEntityWithIngredients cocktail) {
+    public void deleteCocktail(CocktailRecipe cocktailRecipe) {
+        CocktailEntityWithIngredients cocktail = convertRecipeToEntity(cocktailRecipe);
         AppDatabase.databaseWriteExecutor.execute(
                 new Runnable() {
                     @Override
@@ -58,10 +60,6 @@ public class SavedCocktailsRepository {
                     }
                 }
         );
-    }
-
-    public LiveData<List<CocktailEntityWithIngredients>> getAllSavedCocktails() {
-        return savedCocktailsDao.getAllSavedCocktails();
     }
 
     public LiveData<CocktailEntityWithIngredients> getSavedCocktailById(int drinkId) {
