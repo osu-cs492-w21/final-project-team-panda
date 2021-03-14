@@ -17,9 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.cs492.cocktailapp.R;
-import com.cs492.cocktailapp.data.CocktailEntityWithIngredients;
+import com.cs492.cocktailapp.db.CocktailEntityWithIngredients;
 import com.cs492.cocktailapp.data.CocktailRecipe;
-import com.cs492.cocktailapp.data.SavedCocktailsViewModel;
 
 public class DetailedCocktailActivity extends AppCompatActivity {
 
@@ -31,7 +30,7 @@ public class DetailedCocktailActivity extends AppCompatActivity {
     private RecyclerView ingredientListRV;
     private IngredientAdapter ingredientAdapter;
 
-    private SavedCocktailsViewModel viewModel;
+    private DetailedCocktailViewModel viewModel;
     private boolean isFavorited;
 
     @Override
@@ -47,7 +46,7 @@ public class DetailedCocktailActivity extends AppCompatActivity {
                  new ViewModelProvider.AndroidViewModelFactory(
                         getApplication()
                  )
-         ).get(SavedCocktailsViewModel.class);
+         ).get(DetailedCocktailViewModel.class);
 
         Intent intent =  getIntent();
         if(intent != null && intent.hasExtra(EXTRA_RECIPE)) {

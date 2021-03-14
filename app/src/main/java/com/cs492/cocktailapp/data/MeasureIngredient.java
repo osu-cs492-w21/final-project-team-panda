@@ -4,7 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Index;
-import androidx.room.PrimaryKey;
+
+import com.cs492.cocktailapp.db.CocktailEntity;
 
 import java.io.Serializable;
 

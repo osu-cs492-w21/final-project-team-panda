@@ -1,7 +1,9 @@
-package com.cs492.cocktailapp.data;
+package com.cs492.cocktailapp.db;
 
 import androidx.room.Embedded;
 import androidx.room.Relation;
+
+import com.cs492.cocktailapp.data.MeasureIngredient;
 
 import java.util.List;
 

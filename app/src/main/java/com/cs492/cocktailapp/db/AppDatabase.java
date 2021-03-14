@@ -1,10 +1,12 @@
-package com.cs492.cocktailapp.data;
+package com.cs492.cocktailapp.db;
 
 import android.content.Context;
 
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+
+import com.cs492.cocktailapp.data.MeasureIngredient;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

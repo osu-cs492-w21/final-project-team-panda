@@ -1,4 +1,4 @@
-package com.cs492.cocktailapp.data;
+package com.cs492.cocktailapp.db;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
