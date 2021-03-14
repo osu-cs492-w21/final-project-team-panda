@@ -18,6 +18,11 @@
             android:parentActivityName=".ui.main.MainActivity">
         </activity>
         <activity
+            android:name=".ui.search.SearchCocktailActivity"
+            android:label="@string/title_activity_search_cocktail"
+            android:parentActivityName=".ui.main.MainActivity">
+        </activity>
+        <activity
             android:name=".ui.main.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.CocktailApp.NoActionBar"

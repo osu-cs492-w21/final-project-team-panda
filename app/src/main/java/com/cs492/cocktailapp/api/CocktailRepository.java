@@ -63,18 +63,21 @@ public class CocktailRepository {
     private ArrayList<CocktailRecipe> convertCocktailItemsToRecipes(List<CocktailItem> items){
         ArrayList<CocktailRecipe> recipes = new ArrayList<>();
 
-        for (CocktailItem item : items) {
-            CocktailRecipe obj = new CocktailRecipe(
-                    item.getDrinkName(),
-                    Integer.parseInt(item.getDrinkId()),
-                    item.getDrinkImage(),
-                    item.getDrinkInstructions(),
-                    item.getDrinkGlass(),
-                    item.getMeasureIngredients()
-            );
-            recipes.add(obj);
+        // TODO: Implement better way to fix null error
+        // If you don't check for it to be null then the search function will break when there are no matching results (returns null cocktails)
+        if(items != null) {
+            for (CocktailItem item : items) {
+                CocktailRecipe obj = new CocktailRecipe(
+                        item.getDrinkName(),
+                        Integer.parseInt(item.getDrinkId()),
+                        item.getDrinkImage(),
+                        item.getDrinkInstructions(),
+                        item.getDrinkGlass(),
+                        item.getMeasureIngredients()
+                );
+                recipes.add(obj);
+            }
         }
-
         return recipes;
     }
 

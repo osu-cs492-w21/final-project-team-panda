@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">CocktailApp</string>
     <string name="title_activity_detailed_cocktail">DetailedCocktailActivity</string>
+    <string name="title_activity_search_cocktail">Search for Cocktails</string>
 
+    <string name="search_box_hint">Search for cocktails by name...</string>
+    <string name="search_button_text">Search</string>
     <string name="action_search">Search</string>
 
     <!-- Strings used for tabs -->
