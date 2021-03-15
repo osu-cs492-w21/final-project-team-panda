@@ -6,8 +6,6 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.cs492.cocktailapp.data.CocktailRecipe;
-import com.cs492.cocktailapp.db.CocktailEntity;
-import com.cs492.cocktailapp.db.CocktailEntityWithIngredients;
 import com.cs492.cocktailapp.db.SavedCocktailsRepository;
 
 public class DetailedCocktailViewModel extends AndroidViewModel {
@@ -26,7 +24,7 @@ public class DetailedCocktailViewModel extends AndroidViewModel {
         savedCocktailsRepository.deleteCocktail(cocktail);
     }
 
-    public LiveData<CocktailEntityWithIngredients> getSavedCocktailById(int drinkId) {
+    public LiveData<CocktailRecipe> getSavedCocktailById(int drinkId) {
 
         return savedCocktailsRepository.getSavedCocktailById(drinkId);
     }
