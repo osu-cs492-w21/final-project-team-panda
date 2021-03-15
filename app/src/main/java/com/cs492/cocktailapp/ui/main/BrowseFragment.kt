@@ -15,7 +15,9 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.cs492.cocktailapp.R
 import com.cs492.cocktailapp.data.BrowseCategory
+import com.cs492.cocktailapp.data.CocktailListItemSize
 import com.cs492.cocktailapp.data.LoadingStatus
+import com.cs492.cocktailapp.ui.list.CocktailListAdapter
 
 /*
  * The caller *MUST* put a com.cs492.cocktailapp.data.BrowseCategory with key CATEGORY_ARGUMENT in
@@ -27,7 +29,7 @@ class BrowseFragment : Fragment() {
     private lateinit var pageViewModel: BrowseViewModel
 
     private lateinit var recyclerView: RecyclerView
-    private val adapter = BrowseCategoryListAdapter()
+    private val adapter = CocktailListAdapter(CocktailListItemSize.Large)
 
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     private lateinit var errorView: View
@@ -37,12 +39,12 @@ class BrowseFragment : Fragment() {
 
     // Source: "Kotlin Fragment to Activity Communication Example" by zacharymikel
     // https://gist.github.com/zacharymikel/40aa61b2ff4d0b1ae267212d7dd965e5
-    private var listener: BrowseFragmentListener? = null
+    private var listener: CocktailFragmentListener? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
-        if (context is BrowseFragmentListener) {
+        if (context is CocktailFragmentListener) {
             listener = context
         } else {
             throw RuntimeException("$context does not implement `BrowseFragmentListener")
@@ -98,16 +100,7 @@ class BrowseFragment : Fragment() {
 
         // Connect view model to the recycler view
         pageViewModel.browseItems.observe(viewLifecycleOwner, {
-            if (category == BrowseCategory.Saved && it.isEmpty()) {
-                // Hide the recycler view and show the error text underneath
-                recyclerView.visibility = View.GONE
-                errorView.visibility = View.VISIBLE
-
-                // Tell user they have none saved and how to save
-                showNoSaved()
-            } else {
-                adapter.cocktailRecipeList = it
-            }
+            adapter.cocktailRecipeList = it
         })
 
         // Observe view model status
@@ -117,10 +110,11 @@ class BrowseFragment : Fragment() {
                     LoadingStatus.Error -> {
                         swipeRefreshLayout.isRefreshing = false
 
-                        recyclerView.visibility = View.GONE
+                        recyclerView.visibility = View.INVISIBLE
                         errorView.visibility = View.VISIBLE
 
-                        showError()
+                        errorHeadline.text = getString(R.string.browse_error_no_connection)
+                        errorDetail.text = getString(R.string.browse_error_no_connection_saved_suggestion)
                     }
                     LoadingStatus.Loading -> {
                         if (!swipeRefreshLayout.isRefreshing) {
@@ -130,8 +124,8 @@ class BrowseFragment : Fragment() {
                     LoadingStatus.Success -> {
                         swipeRefreshLayout.isRefreshing = false
 
-                        errorView.visibility = View.GONE
                         recyclerView.visibility = View.VISIBLE
+                        errorView.visibility = View.INVISIBLE
                     }
                 }
             } ?: run {
@@ -144,37 +138,6 @@ class BrowseFragment : Fragment() {
         }
 
         return root
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        // Automatically reload Saved cocktails whenever the user navigates to it
-        if (category == BrowseCategory.Saved) {
-            pageViewModel.loadBrowseItems()
-        }
-    }
-
-    private fun showError() {
-        when (category) {
-            // The saved view gets a different error
-            BrowseCategory.Saved -> {
-               // TODO ?
-            }
-            else -> {
-                errorHeadline.text = getString(R.string.browse_error_no_connection)
-                errorDetail.visibility = View.VISIBLE
-                errorDetail.text = getString(R.string.browse_error_no_connection_saved_suggestion)
-                showSavedButton.visibility = View.VISIBLE
-            }
-        }
-    }
-
-    private fun showNoSaved() {
-        errorHeadline.text = getString(R.string.browse_error_no_saved)
-        errorDetail.visibility = View.VISIBLE
-        errorDetail.text = getString(R.string.browse_error_no_saved_explanation)
-        showSavedButton.visibility = View.GONE
     }
 
     companion object {
