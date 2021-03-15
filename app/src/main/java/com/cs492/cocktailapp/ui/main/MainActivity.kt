@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity(), CocktailFragmentListener {
                 Tab.Random,
                 Tab.Saved
         )
-        const val SAVED_INDEX = 3
+        val SAVED_PAGE_INDEX = CATEGORIES.indexOf(Tab.Saved)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,29 +62,21 @@ class MainActivity : AppCompatActivity(), CocktailFragmentListener {
                 launchSearchIntent()
                 return true
             }
-            // TODO(Julian/Anyone): Technically we should put refresh action in the options menu, but idk if
-            //  we really want to...
             else -> super.onOptionsItemSelected(item)
         }
     }
 
     override fun showSavedCocktails() {
-        viewPager.currentItem = SAVED_INDEX
+        viewPager.currentItem = SAVED_PAGE_INDEX
     }
 
     override fun navigateTo(cocktailRecipe: CocktailRecipe) {
-        // TODO(Kristina/Julian): Launch Recipe Intent
-        // Just uncomment and swap out <recipe activity name> with your activity :)
-
         val intent = Intent(this, DetailedCocktailActivity::class.java)
         intent.putExtra(DetailedCocktailActivity.EXTRA_RECIPE, cocktailRecipe)
         startActivity(intent)
     }
 
     private fun launchSearchIntent() {
-        // TODO(ThuyVy/Natalie) : Launch search intent
-        // Just uncomment and swap out <search activity name> with your activity :)
-
         val intent = Intent(this, SearchCocktailActivity::class.java)
         startActivity(intent)
     }
