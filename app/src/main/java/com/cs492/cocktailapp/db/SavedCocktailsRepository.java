@@ -4,6 +4,7 @@ import android.app.Application;
 import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Transformations;
 
 import com.cs492.cocktailapp.data.CocktailRecipe;
 import com.cs492.cocktailapp.data.MeasureIngredient;
@@ -57,12 +58,28 @@ public class SavedCocktailsRepository {
         );
     }
 
-    public LiveData<CocktailEntityWithIngredients> getSavedCocktailById(int drinkId) {
-        return savedCocktailsDao.getSavedCocktailById(drinkId);
+    public LiveData<CocktailRecipe> getSavedCocktailById(int drinkId) {
+        return Transformations.map(savedCocktailsDao.getSavedCocktailById(drinkId), this::convertEntityToRecipe);
+    }
+
+    public LiveData<ArrayList<CocktailRecipe>> getAllSavedCocktails() {
+        return Transformations.map(savedCocktailsDao.getAllSavedCocktails(), this::convertEntityListToRecipeList);
+    }
+
+    private ArrayList<CocktailRecipe> convertEntityListToRecipeList(List<CocktailEntityWithIngredients> entities) {
+        ArrayList<CocktailRecipe> recipes = new ArrayList<>();
+        for (CocktailEntityWithIngredients e : entities) {
+            recipes.add(convertEntityToRecipe(e));
+        }
+        return recipes;
     }
 
     // Helper function to convert from CocktailEntityWithIngredients to CocktailRecipe
     public CocktailRecipe convertEntityToRecipe(CocktailEntityWithIngredients cocktail) {
+        if (cocktail == null) {
+            return null;
+        }
+
         CocktailEntity entity = cocktail.getCocktailItem();
         ArrayList<MeasureIngredient> ingredients =
                 (ArrayList<MeasureIngredient>) cocktail.getCocktailIngredients();
