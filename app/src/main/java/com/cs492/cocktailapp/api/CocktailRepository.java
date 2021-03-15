@@ -81,14 +81,9 @@ public class CocktailRepository {
         return recipes;
     }
 
-    // Functional programming in Java :D
-    // @Param route: This accepts a method that takes a `String` and returns a `Call<CocktailList>`, just
-    // like both of our API methods!
+    // @Param route: This accepts a method that takes a `String` and returns a `Call<CocktailList>`.
     // @Param query: The String parameter to pass to the api method.
     private CompletableFuture<ArrayList<CocktailRecipe>> getListFromQuery(Function<String,Call<CocktailList>> route, String query) {
-        // A `CallableFuture` can only be completed once--unlike liveData, which can change an
-        // unlimited number of times--, and it can be completed with an exception, which makes
-        // it the perfect return type from a Repository call.
         CompletableFuture<ArrayList<CocktailRecipe>> result = new CompletableFuture<>();
 
         Call<CocktailList> request = route.apply(query);
@@ -97,24 +92,20 @@ public class CocktailRepository {
             @Override
             public void onResponse(@NotNull Call<CocktailList> call, @NotNull Response<CocktailList> response) {
                 if (response.code() == 200) {
-                    // We complete the future--indicating success--and pass the data!
                     result.complete(
                             convertCocktailItemsToRecipes(response.body().getCocktailRecipes())
                     );
                 } else {
-                    // Here we have problem, and we indicate that by completingExceptionally
                     result.completeExceptionally(new Exception("Server error"));
                 }
             }
 
             @Override
             public void onFailure(@NotNull Call<CocktailList> call, @NotNull Throwable t) {
-                // Here we have problem, and we indicate that by completingExceptionally
                 result.completeExceptionally(t);
             }
         });
 
-        // We return the CallableFuture so the caller can set callbacks
         return result;
     }
 
@@ -123,23 +114,8 @@ public class CocktailRepository {
     }
 
     public CompletableFuture<ArrayList<CocktailRecipe>> getBrowse(BrowseCategory category) {
-        if (category == BrowseCategory.Saved) {
-            return getSaved();
-        } else {
-            String categoryParameter = categoryPathParameter(category);
-            return getListFromQuery(this.cocktailService::getBrowse, categoryParameter);
-        }
-    }
-
-    public CompletableFuture<ArrayList<CocktailRecipe>> getSaved() {
-        CompletableFuture<ArrayList<CocktailRecipe>> result = new CompletableFuture<>();
-
-        // TODO(Natalie) Remove this and hit Database
-        result.complete(new ArrayList<>());
-
-        // Note:
-
-        return result;
+        String categoryParameter = categoryPathParameter(category);
+        return getListFromQuery(this.cocktailService::getBrowse, categoryParameter);
     }
 
 }
