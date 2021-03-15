@@ -9,8 +9,8 @@ import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
 import androidx.viewpager2.widget.ViewPager2
 import com.cs492.cocktailapp.R
-import com.cs492.cocktailapp.data.BrowseCategory
 import com.cs492.cocktailapp.data.CocktailRecipe
+import com.cs492.cocktailapp.data.Tab
 import com.cs492.cocktailapp.ui.cocktail.DetailedCocktailActivity
 import com.cs492.cocktailapp.ui.search.SearchCocktailActivity
 import com.google.android.material.tabs.TabLayoutMediator
@@ -21,10 +21,10 @@ class MainActivity : AppCompatActivity(), BrowseFragmentListener {
 
     companion object {
         val CATEGORIES = arrayOf(
-                BrowseCategory.Popular,
-                BrowseCategory.New,
-                BrowseCategory.Random,
-                BrowseCategory.Saved
+                Tab.Popular,
+                Tab.New,
+                Tab.Random,
+                Tab.Saved
         )
         const val SAVED_INDEX = 3
     }
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity(), BrowseFragmentListener {
 
         // Set up the view pager
         viewPager = findViewById<ViewPager2>(R.id.view_pager_browse)
-        val browsePagerAdapter = BrowseFragmentAdapter(this, CATEGORIES)
+        val browsePagerAdapter = FragmentPageAdapter(this, CATEGORIES)
         viewPager.adapter = browsePagerAdapter
 
         // Connect the tabLayout to the view pager
