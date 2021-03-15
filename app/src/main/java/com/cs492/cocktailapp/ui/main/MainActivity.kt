@@ -2,31 +2,31 @@ package com.cs492.cocktailapp.ui.main
 
 import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.tabs.TabLayout
-import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.viewpager2.widget.ViewPager2
 import com.cs492.cocktailapp.R
-import com.cs492.cocktailapp.data.BrowseCategory
 import com.cs492.cocktailapp.data.CocktailRecipe
+import com.cs492.cocktailapp.data.Tab
 import com.cs492.cocktailapp.ui.cocktail.DetailedCocktailActivity
 import com.cs492.cocktailapp.ui.search.SearchCocktailActivity
+import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
-class MainActivity : AppCompatActivity(), BrowseFragmentListener {
+class MainActivity : AppCompatActivity(), CocktailFragmentListener {
 
     private lateinit var viewPager: ViewPager2
 
     companion object {
         val CATEGORIES = arrayOf(
-                BrowseCategory.Popular,
-                BrowseCategory.New,
-                BrowseCategory.Random,
-                BrowseCategory.Saved
+                Tab.Popular,
+                Tab.New,
+                Tab.Random,
+                Tab.Saved
         )
-        const val SAVED_INDEX = 3
+        val SAVED_PAGE_INDEX = CATEGORIES.indexOf(Tab.Saved)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity(), BrowseFragmentListener {
 
         // Set up the view pager
         viewPager = findViewById<ViewPager2>(R.id.view_pager_browse)
-        val browsePagerAdapter = BrowseFragmentAdapter(this, CATEGORIES)
+        val browsePagerAdapter = FragmentPageAdapter(this, CATEGORIES)
         viewPager.adapter = browsePagerAdapter
 
         // Connect the tabLayout to the view pager
@@ -62,29 +62,21 @@ class MainActivity : AppCompatActivity(), BrowseFragmentListener {
                 launchSearchIntent()
                 return true
             }
-            // TODO(Julian/Anyone): Technically we should put refresh action in the options menu, but idk if
-            //  we really want to...
             else -> super.onOptionsItemSelected(item)
         }
     }
 
     override fun showSavedCocktails() {
-        viewPager.currentItem = SAVED_INDEX
+        viewPager.currentItem = SAVED_PAGE_INDEX
     }
 
     override fun navigateTo(cocktailRecipe: CocktailRecipe) {
-        // TODO(Kristina/Julian): Launch Recipe Intent
-        // Just uncomment and swap out <recipe activity name> with your activity :)
-
         val intent = Intent(this, DetailedCocktailActivity::class.java)
         intent.putExtra(DetailedCocktailActivity.EXTRA_RECIPE, cocktailRecipe)
         startActivity(intent)
     }
 
     private fun launchSearchIntent() {
-        // TODO(ThuyVy/Natalie) : Launch search intent
-        // Just uncomment and swap out <search activity name> with your activity :)
-
         val intent = Intent(this, SearchCocktailActivity::class.java)
         startActivity(intent)
     }

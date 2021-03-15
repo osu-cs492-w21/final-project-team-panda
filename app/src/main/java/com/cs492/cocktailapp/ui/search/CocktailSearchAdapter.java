@@ -14,11 +14,10 @@ import com.cs492.cocktailapp.R;
 import com.cs492.cocktailapp.data.CocktailRecipe;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class CocktailSearchAdapter extends RecyclerView.Adapter<CocktailSearchAdapter.SearchResultViewHolder> {
     private ArrayList<CocktailRecipe> searchResultsList;
-    private OnSearchResultClickListener resultClickListener;
+    private final OnSearchResultClickListener resultClickListener;
 
     interface OnSearchResultClickListener {
         void onSearchResultClicked(CocktailRecipe recipe);
@@ -46,7 +45,7 @@ public class CocktailSearchAdapter extends RecyclerView.Adapter<CocktailSearchAd
     @Override
     public SearchResultViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.item_search, parent, false);
+        View view = inflater.inflate(R.layout.item_cocktail_small, parent, false);
         return new SearchResultViewHolder(view);
     }
 
@@ -56,14 +55,16 @@ public class CocktailSearchAdapter extends RecyclerView.Adapter<CocktailSearchAd
     }
 
     class SearchResultViewHolder extends RecyclerView.ViewHolder {
-        private TextView searchResultTV;
-        private ImageView cocktailImage;
+        private final TextView searchResultTV;
+        private final ImageView cocktailImage;
+        private final TextView subtitle;
 
 
         SearchResultViewHolder(View itemView) {
             super(itemView);
-            this.searchResultTV = itemView.findViewById(R.id.searchItemName);
-            this.cocktailImage = itemView.findViewById(R.id.searchItemCocktailImage);
+            this.searchResultTV = itemView.findViewById(R.id.smallCocktailItemName);
+            this.cocktailImage = itemView.findViewById(R.id.smallCocktailItemImage);
+            this.subtitle = itemView.findViewById(R.id.smallCocktailItemSubtitle);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -77,6 +78,7 @@ public class CocktailSearchAdapter extends RecyclerView.Adapter<CocktailSearchAd
 
         void bind(CocktailRecipe recipe) {
             this.searchResultTV.setText(recipe.getDrinkName());
+            this.subtitle.setText(recipe.getIngredientSummary());
             Glide.with(itemView)
                     .load(recipe.getDrinkImage())
                     .into(cocktailImage);

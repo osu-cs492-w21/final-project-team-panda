@@ -22,7 +22,7 @@
             android:id="@+id/browseErrorView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone">
+            android:visibility="invisible">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -42,8 +42,7 @@
                     android:layout_height="match_parent"
                     android:maxLines="3"
                     android:textAlignment="center"
-                    android:textAppearance="?attr/textAppearanceHeadline6"
-                    android:text="Error" />
+                    android:textAppearance="?attr/textAppearanceHeadline6" />
 
                 <TextView
                     android:id="@+id/browseErrorExplanation"
@@ -52,16 +51,14 @@
                     android:maxLines="3"
                     android:textAlignment="center"
                     android:layout_marginTop="@dimen/fab_margin"
-                    android:textAppearance="?attr/textAppearanceCaption"
-                    android:visibility="gone" />
+                    android:textAppearance="?attr/textAppearanceCaption" />
 
                 <Button
                     android:id="@+id/showSavedButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/fab_margin"
-                    android:text="GO TO SAVED"
-                    android:visibility="gone" />
+                    android:text="@string/open_saved_tab" />
 
             </LinearLayout>
 

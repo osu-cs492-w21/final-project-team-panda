@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.cs492.cocktailapp.R;
-import com.cs492.cocktailapp.db.CocktailEntityWithIngredients;
 import com.cs492.cocktailapp.data.CocktailRecipe;
 
 public class DetailedCocktailActivity extends AppCompatActivity {
@@ -85,9 +84,10 @@ public class DetailedCocktailActivity extends AppCompatActivity {
 
         // Check if drink is saved in database
         this.viewModel.getSavedCocktailById(this.cocktail.getDrinkId()).observe(
-                this, new Observer<CocktailEntityWithIngredients>() {
+                this,
+                new Observer<CocktailRecipe>() {
                     @Override
-                    public void onChanged(CocktailEntityWithIngredients cocktail) {
+                    public void onChanged(CocktailRecipe cocktail) {
                         if(cocktail != null) {
                             isFavorited = true;
                             menu.findItem(R.id.action_favorite).setIcon(R.drawable.ic_favorite);
